@@ -16,15 +16,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/core/accessorSupport/decorators", "esri/widgets/support/widget", "esri/widgets/Widget", "esri/widgets/Attribution/AttributionViewModel", "esri/core/watchUtils"], function (require, exports, __extends, __decorate, decorators_1, widget_1, Widget, AttributionViewModel, watchUtils) {
+define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/core/watchUtils", "esri/core/accessorSupport/decorators", "esri/widgets/Widget", "esri/widgets/support/widget", "esri/widgets/Attribution/AttributionViewModel"], function (require, exports, __extends, __decorate, watchUtils, decorators_1, Widget, widget_1, AttributionViewModel) {
     "use strict";
     var CSS = {
         base: "esri-custom-attribution esri-widget",
-        poweredBy: "esri-attribution__powered-by",
-        sources: "esri-attribution__sources",
-        link: "esri-attribution__link",
-        // common.css
-        interactive: "esri-interactive"
     };
     var Attribution = /** @class */ (function (_super) {
         __extends(Attribution, _super);
@@ -35,10 +30,16 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //--------------------------------------------------------------------------
         function Attribution(params) {
             var _this = _super.call(this) || this;
-            //----------------------------------
-            //  itemDelimiter
-            //----------------------------------
-            _this.itemDelimiter = " | ";
+            //--------------------------------------------------------------------------
+            //
+            //  Variables
+            //
+            //--------------------------------------------------------------------------
+            //--------------------------------------------------------------------------
+            //
+            //  Properties
+            //
+            //--------------------------------------------------------------------------
             //----------------------------------
             //  view
             //----------------------------------
@@ -53,45 +54,35 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             var _this = this;
             this.own(watchUtils.on(this, "viewModel.items", "change", function () { return _this.scheduleRender(); }));
         };
-        Object.defineProperty(Attribution.prototype, "attributionText", {
-            //--------------------------------------------------------------------------
-            //
-            //  Variables
-            //
-            //--------------------------------------------------------------------------
-            //--------------------------------------------------------------------------
-            //
-            //  Properties
-            //
-            //--------------------------------------------------------------------------
-            //----------------------------------
-            //  attributionText
-            //----------------------------------
-            get: function () {
-                return this.viewModel.items.map(function (item) { return item.text; }).join(this.itemDelimiter);
-            },
-            enumerable: true,
-            configurable: true
-        });
         //--------------------------------------------------------------------------
         //
         //  Public Methods
         //
         //--------------------------------------------------------------------------
         Attribution.prototype.render = function () {
-            return (widget_1.tsx("div", { class: CSS.base }, "Hello world"));
+            return (widget_1.tsx("div", { class: CSS.base },
+                widget_1.tsx("table", null, this._renderItems())));
         };
-        __decorate([
-            decorators_1.property({
-                dependsOn: ["viewModel.items.length", "itemDelimiter"],
-                readOnly: true
-            }),
-            widget_1.renderable()
-        ], Attribution.prototype, "attributionText", null);
-        __decorate([
-            decorators_1.property(),
-            widget_1.renderable()
-        ], Attribution.prototype, "itemDelimiter", void 0);
+        //--------------------------------------------------------------------------
+        //
+        //  Private Methods
+        //
+        //--------------------------------------------------------------------------
+        Attribution.prototype._renderItem = function (item) {
+            var text = item.text, layers = item.layers;
+            var layerNodes = layers.map(function (layer) {
+                return (widget_1.tsx("td", null,
+                    widget_1.tsx("a", { href: layer.url, target: "_blank" }, layer.title)));
+            });
+            return (widget_1.tsx("tr", { key: item },
+                widget_1.tsx("th", { rowspan: layers.length }, text),
+                layerNodes));
+        };
+        Attribution.prototype._renderItems = function () {
+            var _this = this;
+            var items = this.viewModel.items;
+            return items.toArray().map(function (item) { return _this._renderItem(item); });
+        };
         __decorate([
             decorators_1.aliasOf("viewModel.view")
         ], Attribution.prototype, "view", void 0);

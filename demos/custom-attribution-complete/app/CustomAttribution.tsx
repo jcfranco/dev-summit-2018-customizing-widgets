@@ -1,25 +1,18 @@
 /// <amd-dependency path="esri/core/tsSupport/declareExtendsHelper" name="__extends" />
 /// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
 
-import { aliasOf, subclass, property, declared } from "esri/core/accessorSupport/decorators";
-import { accessibleHandler, tsx, renderable } from "esri/widgets/support/widget";
+import watchUtils = require("esri/core/watchUtils");
+import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
 
 import Widget = require("esri/widgets/Widget");
+import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
 
 import AttributionViewModel = require("esri/widgets/Attribution/AttributionViewModel");
-
-import watchUtils = require("esri/core/watchUtils");
 
 import View = require("esri/views/View");
 
 const CSS = {
   base: "esri-custom-attribution esri-widget",
-  poweredBy: "esri-attribution__powered-by",
-  sources: "esri-attribution__sources",
-  link: "esri-attribution__link",
-
-  // common.css
-  interactive: "esri-interactive"
 };
 
 @subclass("esri.widgets.Attribution")
@@ -47,33 +40,11 @@ class Attribution extends declared(Widget) {
   //
   //--------------------------------------------------------------------------
 
-
   //--------------------------------------------------------------------------
   //
   //  Properties
   //
   //--------------------------------------------------------------------------
-
-  //----------------------------------
-  //  attributionText
-  //----------------------------------
-
-  @property({
-    dependsOn: ["viewModel.items.length", "itemDelimiter"],
-    readOnly: true
-  })
-  @renderable()
-  get attributionText(): string {
-    return this.viewModel.items.map(item => item.text).join(this.itemDelimiter);
-  }
-
-  //----------------------------------
-  //  itemDelimiter
-  //----------------------------------
-
-  @property()
-  @renderable()
-  itemDelimiter = " | ";
 
   //----------------------------------
   //  view
@@ -105,7 +76,9 @@ class Attribution extends declared(Widget) {
     return (
       <div
         class={CSS.base}>
-        Hello world
+        <table>
+          {this._renderItems()}
+        </table>
       </div>
     );
   }
@@ -115,6 +88,28 @@ class Attribution extends declared(Widget) {
   //  Private Methods
   //
   //--------------------------------------------------------------------------
+
+  private _renderItem(item: __esri.AttributionItem) {
+    const { text, layers } = item;
+
+    const layerNodes = layers.map(layer => {
+      return (
+        <td><a href={layer.url} target="_blank">{layer.title}</a></td>
+      );
+    });
+
+    return (
+      <tr key={item}>
+        <th rowspan={layers.length}>{text}</th>
+        {layerNodes}
+      </tr>
+    );
+  }
+
+  private _renderItems(): any {
+    const { items } = this.viewModel;
+    return (items as any).toArray().map((item: __esri.AttributionItem) => this._renderItem(item));
+  }
 
 
 }

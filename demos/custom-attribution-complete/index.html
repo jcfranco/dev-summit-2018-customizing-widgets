@@ -9,15 +9,35 @@
 
   <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
 
+
+  <script>
+    var href = location.href;
+    var demoLocation = href.slice(0, href.lastIndexOf("/"));
+    var dojoConfig = {
+      async: true,
+      packages: [{
+        name: "demo",
+        location: demoLocation + "/app"
+      }]
+    };
+
+  </script>
+
   <script src="https://js.arcgis.com/4.6/"></script>
 
-  <script src="app/CustomAttribution.js"></script>
-
   <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
     #viewDiv {
       padding: 0;
       margin: 0;
-      height: 500px;
+      height: 100%;
       width: 100%;
       overflow: hidden;
     }
@@ -29,7 +49,7 @@
     require([
       "esri/WebMap",
       "esri/views/MapView",
-      "app/CustomAttribution",
+      "demo/CustomAttribution",
       "dojo/domReady!"
     ], function (
       WebMap,
@@ -48,13 +68,11 @@
         map: webmap
       });
 
-      var viewModel = new LayerListViewModel({
+      var customAttribution = new CustomAttribution({
         view: view
       });
 
-      var customAttribution = new CustomAttribution();
-
-      view.ui.add("top-right", customAttribution);
+      view.ui.add(customAttribution, "top-right");
 
     });
 

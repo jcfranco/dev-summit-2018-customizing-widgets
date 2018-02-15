@@ -77,6 +77,10 @@ class Attribution extends declared(Widget) {
       <div
         class={CSS.base}>
         <table>
+          <tr>
+             <th>Layer</th>
+            <th>Source(s)</th>
+          </tr>
           {this._renderItems()}
         </table>
       </div>
@@ -100,8 +104,8 @@ class Attribution extends declared(Widget) {
 
     return (
       <tr key={item}>
-        <th rowspan={layers.length}>{text}</th>
         {layerNodes}
+        <td rowspan={layers.length}>{text}</td>
       </tr>
     );
   }

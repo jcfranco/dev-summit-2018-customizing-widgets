@@ -61,7 +61,11 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //--------------------------------------------------------------------------
         Attribution.prototype.render = function () {
             return (widget_1.tsx("div", { class: CSS.base },
-                widget_1.tsx("table", null, this._renderItems())));
+                widget_1.tsx("table", null,
+                    widget_1.tsx("tr", null,
+                        widget_1.tsx("th", null, "Layer"),
+                        widget_1.tsx("th", null, "Source(s)")),
+                    this._renderItems())));
         };
         //--------------------------------------------------------------------------
         //
@@ -75,8 +79,8 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                     widget_1.tsx("a", { href: layer.url, target: "_blank" }, layer.title)));
             });
             return (widget_1.tsx("tr", { key: item },
-                widget_1.tsx("th", { rowspan: layers.length }, text),
-                layerNodes));
+                layerNodes,
+                widget_1.tsx("td", { rowspan: layers.length }, text)));
         };
         Attribution.prototype._renderItems = function () {
             var _this = this;

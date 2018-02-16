@@ -78,7 +78,7 @@ class Attribution extends declared(Widget) {
         class={CSS.base}>
         <table>
           <tr>
-             <th>Layer</th>
+            <th>Layer</th>
             <th>Source(s)</th>
           </tr>
           {this._renderItems()}
@@ -114,7 +114,6 @@ class Attribution extends declared(Widget) {
     const { items } = this.viewModel;
     return (items as any).toArray().map((item: __esri.AttributionItem) => this._renderItem(item));
   }
-
 
 }
 

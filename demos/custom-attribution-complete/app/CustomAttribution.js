@@ -19,7 +19,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/core/watchUtils", "esri/core/accessorSupport/decorators", "esri/widgets/Widget", "esri/widgets/support/widget", "esri/widgets/Attribution/AttributionViewModel"], function (require, exports, __extends, __decorate, watchUtils, decorators_1, Widget, widget_1, AttributionViewModel) {
     "use strict";
     var CSS = {
-        base: "esri-custom-attribution esri-widget",
+        base: "esri-widget esri-custom-attribution",
     };
     var Attribution = /** @class */ (function (_super) {
         __extends(Attribution, _super);
@@ -64,7 +64,10 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                 widget_1.tsx("table", null,
                     widget_1.tsx("tr", null,
                         widget_1.tsx("th", null, "Layer"),
-                        widget_1.tsx("th", null, "Source(s)")),
+                        widget_1.tsx("th", null, "Visible"),
+                        widget_1.tsx("th", null, "Type"),
+                        widget_1.tsx("th", null, "Source(s)"),
+                        widget_1.tsx("th", null, "Extent")),
                     this._renderItems())));
         };
         //--------------------------------------------------------------------------
@@ -72,15 +75,25 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //  Private Methods
         //
         //--------------------------------------------------------------------------
+        Attribution.prototype._zoomTo = function (event) {
+            var extent = event.currentTarget["data-extent"];
+            console.log(extent);
+            var view = this.view;
+            if (!extent || !view) {
+                return;
+            }
+            view.goTo(extent);
+        };
         Attribution.prototype._renderItem = function (item) {
-            var text = item.text, layers = item.layers;
-            var layerNodes = layers.map(function (layer) {
-                return (widget_1.tsx("td", null,
-                    widget_1.tsx("a", { href: layer.url, target: "_blank" }, layer.title)));
-            });
+            var _a = item, text = _a.text, layer = _a.layer;
             return (widget_1.tsx("tr", { key: item },
-                layerNodes,
-                widget_1.tsx("td", { rowspan: layers.length }, text)));
+                widget_1.tsx("td", null,
+                    widget_1.tsx("a", { target: "_blank", href: layer.url }, layer.title)),
+                widget_1.tsx("td", null, !!layer.visible),
+                widget_1.tsx("td", null, layer.type),
+                widget_1.tsx("td", null, text),
+                widget_1.tsx("td", null,
+                    widget_1.tsx("a", { bind: this, "data-extent": layer.fullExtent, onclick: this._zoomTo }, "Zoom to"))));
         };
         Attribution.prototype._renderItems = function () {
             var _this = this;

@@ -10,9 +10,10 @@ import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget"
 import AttributionViewModel = require("esri/widgets/Attribution/AttributionViewModel");
 
 import View = require("esri/views/View");
+import { Extent } from "esri/geometry";
 
 const CSS = {
-  base: "esri-custom-attribution esri-widget",
+  base: "esri-widget esri-custom-attribution",
 };
 
 @subclass("esri.widgets.Attribution")
@@ -79,7 +80,10 @@ class Attribution extends declared(Widget) {
         <table>
           <tr>
             <th>Layer</th>
+            <th>Visible</th>
+            <th>Type</th>
             <th>Source(s)</th>
+            <th>Extent</th>
           </tr>
           {this._renderItems()}
         </table>
@@ -93,19 +97,28 @@ class Attribution extends declared(Widget) {
   //
   //--------------------------------------------------------------------------
 
-  private _renderItem(item: __esri.AttributionItem) {
-    const { text, layers } = item;
+  private _zoomTo(event: Event) {
+    const extent = event.currentTarget["data-extent"] as Extent;
+    console.log(extent);
+    const { view } = this;
 
-    const layerNodes = layers.map(layer => {
-      return (
-        <td><a href={layer.url} target="_blank">{layer.title}</a></td>
-      );
-    });
+    if (!extent || !view) {
+      return;
+    }
+
+    (view as any).goTo(extent);
+  }
+
+  private _renderItem(item: __esri.AttributionItem) {
+    const { text, layer } = item as any;
 
     return (
       <tr key={item}>
-        {layerNodes}
-        <td rowspan={layers.length}>{text}</td>
+        <td><a target="_blank" href={layer.url}>{layer.title}</a></td>
+        <td>{!!layer.visible}</td>
+        <td>{layer.type}</td>
+        <td>{text}</td>
+        <td><a bind={this} data-extent={layer.fullExtent} onclick={this._zoomTo}>Zoom to</a></td>
       </tr>
     );
   }

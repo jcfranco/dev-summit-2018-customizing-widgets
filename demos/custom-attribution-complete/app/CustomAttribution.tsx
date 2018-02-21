@@ -9,12 +9,21 @@ import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget"
 
 import AttributionViewModel = require("esri/widgets/Attribution/AttributionViewModel");
 
-import View = require("esri/views/View");
+import MapView = require("esri/views/MapView");
+import SceneView = require("esri/views/SceneView");
+
+// import Layer = require("esri/layers/Layer");
+// import LayerView = require("esri/views/layers/LayerView");
+
 import { Extent } from "esri/geometry";
 
 const CSS = {
   base: "esri-widget esri-custom-attribution",
 };
+
+// function getLayerView(layer: Layer, view: MapView | SceneView): LayerView {
+//   return (view as any).allLayerViews.find((lv: LayerView) => lv.layer === layer);
+// }
 
 @subclass("esri.widgets.Attribution")
 class Attribution extends declared(Widget) {
@@ -52,7 +61,7 @@ class Attribution extends declared(Widget) {
   //----------------------------------
 
   @aliasOf("viewModel.view")
-  view: View = null;
+  view: MapView | SceneView = null;
 
   //----------------------------------
   //  viewModel
@@ -74,19 +83,22 @@ class Attribution extends declared(Widget) {
   //--------------------------------------------------------------------------
 
   render() {
+    const tableNode = this.view.ready ? (
+      <table>
+        <tr>
+          <th>Layer</th>
+          <th>Visible</th>
+          <th>Type</th>
+          <th>Source(s)</th>
+          <th>Extent</th>
+        </tr>
+        {this._renderItems()}
+      </table>
+    ) : null;
+
     return (
-      <div
-        class={CSS.base}>
-        <table>
-          <tr>
-            <th>Layer</th>
-            <th>Visible</th>
-            <th>Type</th>
-            <th>Source(s)</th>
-            <th>Extent</th>
-          </tr>
-          {this._renderItems()}
-        </table>
+      <div class={CSS.base}>
+        {tableNode}
       </div>
     );
   }
@@ -99,33 +111,48 @@ class Attribution extends declared(Widget) {
 
   private _zoomTo(event: Event) {
     const extent = event.currentTarget["data-extent"] as Extent;
-    console.log(extent);
     const { view } = this;
 
     if (!extent || !view) {
       return;
     }
 
-    (view as any).goTo(extent);
+    (view as MapView).goTo(extent);
+  }
+
+  private _getLayerUrl(layer: any): string {
+    return layer.url || null;
   }
 
   private _renderItem(item: __esri.AttributionItem) {
-    const { text, layer } = item as any;
+    const { text, layer } = item;
+
+    const layerUrl = this._getLayerUrl(layer);
+
+    const layerTitleNode = layerUrl ?
+      (<a target="_blank" href={layerUrl}>{layer.title}</a>) :
+      (<span>{layer.title}</span>);
+
+    // const layerView = getLayerView(layer, this.view);
+    // console.log(layerView);
 
     return (
       <tr key={item}>
-        <td><a target="_blank" href={layer.url}>{layer.title}</a></td>
+        <td>{layerTitleNode}</td>
         <td>{!!layer.visible}</td>
         <td>{layer.type}</td>
         <td>{text}</td>
-        <td><a bind={this} data-extent={layer.fullExtent} onclick={this._zoomTo}>Zoom to</a></td>
+        <td><a
+          bind={this}
+          data-extent={layer.fullExtent}
+          onclick={this._zoomTo}
+        >Zoom to</a></td>
       </tr>
     );
   }
 
   private _renderItems(): any {
-    const { items } = this.viewModel;
-    return (items as any).toArray().map((item: __esri.AttributionItem) => this._renderItem(item));
+    return this.viewModel.items.toArray().map(item => this._renderItem(item));
   }
 
 }

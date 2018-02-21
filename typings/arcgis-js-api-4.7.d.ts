@@ -7786,7 +7786,7 @@ declare namespace __esri {
     view: View;
   }
 
-  export class GraphicsLayer extends Layer, ScaleRangeLayer {
+  interface GraphicsLayer extends Layer, ScaleRangeLayer {
     /**
      * Specifies how graphics are placed on the vertical axis (z). This property may only be used in a [SceneView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-SceneView.html). See the [ElevationInfo sample](https://developers.arcgis.com/javascript/latest/sample-code/scene-elevationinfo/index.html) for an example of how this property may be used.
      * 
@@ -7827,8 +7827,6 @@ declare namespace __esri {
      * 
      */
     addMany(graphics: Graphic[]): void;
-
-    protected importLayerViewModule(): void;
     /**
      * Removes a graphic from the layer.
      * 
@@ -7865,6 +7863,18 @@ declare namespace __esri {
 
     on(name: "layerview-destroy", modifiers: string[], eventHandler: GraphicsLayerLayerviewDestroyEventHandler): IHandle;
   }
+
+  interface GraphicsLayerConstructor {
+    /**
+     * A GraphicsLayer contains one or more client-side [Graphics](https://developers.arcgis.com/javascript/latest/api-reference/esri-Graphic.html). Each [graphic](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-GraphicsLayer.html#graphics) in the GraphicsLayer is rendered in a [LayerView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-LayerView.html) inside either a [SceneView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-SceneView.html) or a [MapView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html). The [graphics](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-GraphicsLayer.html#graphics) contain discrete vector [geometries](https://developers.arcgis.com/javascript/latest/api-reference/esri-geometry-Geometry.html) that represent real-world phenomena.
+     * 
+     * [Read more...](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-GraphicsLayer.html)
+     */
+
+    new(properties?: GraphicsLayerProperties): GraphicsLayer;
+  }
+
+  export const GraphicsLayer: GraphicsLayerConstructor;
 
   interface GraphicsLayerProperties extends LayerProperties, ScaleRangeLayerProperties {
     /**
@@ -8018,7 +8028,7 @@ declare namespace __esri {
     view: View;
   }
 
-  export class ImageryLayer extends Layer, ArcGISImageService, ScaleRangeLayer, RefreshableLayer {
+  interface ImageryLayer extends Layer, ArcGISImageService, ScaleRangeLayer, RefreshableLayer {
     /**
      * A function that processes [pixelData](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-ImageryLayerView.html#pixelData). The `pixelData` object contains a [pixelBlock](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-support-PixelBlock.html) property that gives you access to all of the pixels in the raster on the client.  Inside the `pixelFilter` you may loop through all the [pixels](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-support-PixelBlock.html#pixels) found in the `pixelBlock` property of the `pixelData` object and process them. This function may be used to hide some pixels from the view, alter their values, and change their color.
      * 
@@ -8046,8 +8056,6 @@ declare namespace __esri {
      */
     readonly token: string;
 
-
-    protected importLayerViewModule(): void;
     /**
      * Executes the [pixelFilter](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-ImageryLayer.html#pixelFilter) function and redraws the layer.
      * 
@@ -8066,6 +8074,20 @@ declare namespace __esri {
 
     on(name: "layerview-destroy", modifiers: string[], eventHandler: ImageryLayerLayerviewDestroyEventHandler): IHandle;
   }
+
+  interface ImageryLayerConstructor {
+    /**
+     * Represents an image service resource as a layer. An ImageryLayer retrieves and displays data from image services. ImageryLayer allows you to and apply client side [pixel filtering](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-ImageryLayer.html#pixelFilter), server defined or client-defined [rendering rules](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-ImageryLayer.html#renderingRule) (e.g. remap, colormap), and [mosaic rules](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-ImageryLayer.html#mosaicRule). This layer is particularly useful when you need to interactively change pixel manipulation criteria and get an immediate response on the client.
+     * 
+     * [Read more...](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-ImageryLayer.html)
+     */
+
+    new(properties?: ImageryLayerProperties): ImageryLayer;
+
+    fromJSON(json: any): ImageryLayer;
+  }
+
+  export const ImageryLayer: ImageryLayerConstructor;
 
   interface ImageryLayerProperties extends LayerProperties, ArcGISImageServiceProperties, ScaleRangeLayerProperties, RefreshableLayerProperties {
     /**
@@ -9821,7 +9843,7 @@ declare namespace __esri {
     type: string;
   }
 
-  export class StreamLayer extends FeatureLayer {
+  interface StreamLayer extends FeatureLayer {
     /**
      * Contains the attribute and spatial filters used to filter messages sent to the client by a Stream Service. This property can be set in the constructor but is `read-only` after the layer is created. To change the filter after the layer is created, use the [updateFilter()](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-StreamLayer.html#updateFilter) method.
      * 
@@ -9847,8 +9869,6 @@ declare namespace __esri {
      */
     purgeOptions: StreamLayerPurgeOptions;
 
-
-    protected importLayerViewModule(): void;
     /**
      * Updates the [filter](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-StreamLayer.html#filter) on the layer. The filter is updated on all views that contain the layer. If the input `filterChanges` object is `undefined` or `null`, the spatial and attribute filters are removed. To update the filter on a single layer view associated with the layer, use the [StreamLayerView.updateFilter()](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-StreamLayerView.html#updateFilter) method after getting the layer view object.  Filter changes only apply to incoming features. Features already displayed in the view are not filtered. Therefore, you may want to clear the graphics in the layer view prior to applying a new filter. To do so, get the layer view then call [removeAll()](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-Collection.html#removeAll) on the [StreamLayerView.graphics](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-StreamLayerView.html#graphics). You may also filter features already present in the view using the [Collection](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-Collection.html) methods. See the examples below.
      * 
@@ -9870,6 +9890,20 @@ declare namespace __esri {
 
     on(name: "layerview-destroy", modifiers: string[], eventHandler: StreamLayerLayerviewDestroyEventHandler): IHandle;
   }
+
+  interface StreamLayerConstructor {
+    /**
+     * The stream layer extends the feature layer to add the ability to connect to a stream of data using HTML5 WebSockets. It connects to a server that emits geographic features continuously. While the feature layer is used to map relatively static data, the stream layer is suitable when you would like to map dynamic streams of data that are unbounded and continuous. When a stream layer is added to a map, users are able to see real-time updates pushed out by the server.
+     * 
+     * [Read more...](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-StreamLayer.html)
+     */
+
+    new(properties?: StreamLayerProperties): StreamLayer;
+
+    fromJSON(json: any): StreamLayer;
+  }
+
+  export const StreamLayer: StreamLayerConstructor;
 
   interface StreamLayerProperties extends FeatureLayerProperties {
     /**
@@ -12627,17 +12661,24 @@ declare namespace __esri {
     title?: string;
   }
 
-  export class TiledLayer {
+  interface TiledLayer {
     /**
      * The tiling scheme information for the layer.
      * 
      * [Read more...](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-TiledLayer.html#tileInfo)
      */
     tileInfo: TileInfo;
-
-
-    protected importLayerViewModule(): void;
   }
+
+  interface TiledLayerConstructor {
+
+
+    new(properties?: TiledLayerProperties): TiledLayer;
+
+    fromJSON(json: any): TiledLayer;
+  }
+
+  export const TiledLayer: TiledLayerConstructor;
 
   interface TiledLayerProperties {
     /**
@@ -38608,6 +38649,8 @@ declare namespace __esri {
 
     action: string;
 
+    angle: number;
+
     button: number;
 
     buttons: number;
@@ -38615,6 +38658,8 @@ declare namespace __esri {
     native: any;
 
     origin: MapViewDragEventOrigin;
+
+    radius: number;
 
     stopPropagation: Function;
 
@@ -39551,6 +39596,8 @@ declare namespace __esri {
 
     action: string;
 
+    angle: number;
+
     button: number;
 
     buttons: number;
@@ -39558,6 +39605,8 @@ declare namespace __esri {
     native: any;
 
     origin: SceneViewDragEventOrigin;
+
+    radius: number;
 
     stopPropagation: Function;
 
@@ -42254,11 +42303,11 @@ declare namespace __esri {
 
   interface AttributionViewModel {
     /**
-     * Array of attribution items.
+     * A collection of [AttributionItem](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Attribution-AttributionViewModel.html#AttributionItem)s.
      * 
      * [Read more...](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Attribution-AttributionViewModel.html#items)
      */
-    readonly items: AttributionItem[];
+    readonly items: Collection<AttributionItem>;
     /**
      * The view model's state.  **Known Values:** ready | disabled
      * 
@@ -42289,23 +42338,23 @@ declare namespace __esri {
   export const AttributionViewModel: AttributionViewModelConstructor;
 
   /**
-   * The following properties define an attribution item that contains the attribution text for a set of layers.
+   * The following properties define an attribution item that contains the attribution text for a layer.
    * 
    * [Read more...](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Attribution-AttributionViewModel.html#AttributionItem)
    */
   export interface AttributionItem extends Object {
     /**
-     * The attribution text for one or more layers.
+     * The attribution text.
      * 
      * [Read more...](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Attribution-AttributionViewModel.html#AttributionItem)
      */
-    text: boolean;
+    text: string;
     /**
-     * The associated layers that share the attribution text.
+     * The layer that has the attribution text.
      * 
      * [Read more...](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Attribution-AttributionViewModel.html#AttributionItem)
      */
-    layers: Layer[];
+    layer: Layer;
   }
 
   interface BasemapGallery extends Widget {
@@ -44534,12 +44583,6 @@ declare namespace __esri {
 
   interface LayerListViewModel extends Accessor {
     /**
-     * **Use [listItemCreatedFunction](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList-LayerListViewModel.html#listItemCreatedFunction) instead.**  Specify the function that will create actions for [ListItems](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList-ListItem.html). Actions are defined with the properties listed in the [Action class](https://developers.arcgis.com/javascript/latest/api-reference/esri-support-Action.html).
-     * 
-     * [Read more...](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList-LayerListViewModel.html#createActionsFunction)
-     */
-    createActionsFunction: Function;
-    /**
      * Specifies a function that accesses each [ListItem](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList-ListItem.html). Each list item can be modified according to its modifiable propeties. Actions can be added to list items using the [actionsSections](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList-ListItem.html#actionsSections) property of the ListItem.
      * 
      * [Read more...](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList-LayerListViewModel.html#listItemCreatedFunction)
@@ -44587,12 +44630,6 @@ declare namespace __esri {
   export const LayerListViewModel: LayerListViewModelConstructor;
 
   interface LayerListViewModelProperties {
-    /**
-     * **Use [listItemCreatedFunction](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList-LayerListViewModel.html#listItemCreatedFunction) instead.**  Specify the function that will create actions for [ListItems](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList-ListItem.html). Actions are defined with the properties listed in the [Action class](https://developers.arcgis.com/javascript/latest/api-reference/esri-support-Action.html).
-     * 
-     * [Read more...](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList-LayerListViewModel.html#createActionsFunction)
-     */
-    createActionsFunction?: Function;
     /**
      * Specifies a function that accesses each [ListItem](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList-ListItem.html). Each list item can be modified according to its modifiable propeties. Actions can be added to list items using the [actionsSections](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList-ListItem.html#actionsSections) property of the ListItem.
      * 

@@ -21,6 +21,9 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
     var CSS = {
         base: "esri-widget esri-custom-attribution",
     };
+    // function getLayerView(layer: Layer, view: MapView | SceneView): LayerView {
+    //   return (view as any).allLayerViews.find((lv: LayerView) => lv.layer === layer);
+    // }
     var Attribution = /** @class */ (function (_super) {
         __extends(Attribution, _super);
         //--------------------------------------------------------------------------
@@ -60,15 +63,15 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //
         //--------------------------------------------------------------------------
         Attribution.prototype.render = function () {
-            return (widget_1.tsx("div", { class: CSS.base },
-                widget_1.tsx("table", null,
-                    widget_1.tsx("tr", null,
-                        widget_1.tsx("th", null, "Layer"),
-                        widget_1.tsx("th", null, "Visible"),
-                        widget_1.tsx("th", null, "Type"),
-                        widget_1.tsx("th", null, "Source(s)"),
-                        widget_1.tsx("th", null, "Extent")),
-                    this._renderItems())));
+            var tableNode = this.view.ready ? (widget_1.tsx("table", null,
+                widget_1.tsx("tr", null,
+                    widget_1.tsx("th", null, "Layer"),
+                    widget_1.tsx("th", null, "Visible"),
+                    widget_1.tsx("th", null, "Type"),
+                    widget_1.tsx("th", null, "Source(s)"),
+                    widget_1.tsx("th", null, "Extent")),
+                this._renderItems())) : null;
+            return (widget_1.tsx("div", { class: CSS.base }, tableNode));
         };
         //--------------------------------------------------------------------------
         //
@@ -77,18 +80,25 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //--------------------------------------------------------------------------
         Attribution.prototype._zoomTo = function (event) {
             var extent = event.currentTarget["data-extent"];
-            console.log(extent);
             var view = this.view;
             if (!extent || !view) {
                 return;
             }
             view.goTo(extent);
         };
+        Attribution.prototype._getLayerUrl = function (layer) {
+            return layer.url || null;
+        };
         Attribution.prototype._renderItem = function (item) {
-            var _a = item, text = _a.text, layer = _a.layer;
+            var text = item.text, layer = item.layer;
+            var layerUrl = this._getLayerUrl(layer);
+            var layerTitleNode = layerUrl ?
+                (widget_1.tsx("a", { target: "_blank", href: layerUrl }, layer.title)) :
+                (widget_1.tsx("span", null, layer.title));
+            // const layerView = getLayerView(layer, this.view);
+            // console.log(layerView);
             return (widget_1.tsx("tr", { key: item },
-                widget_1.tsx("td", null,
-                    widget_1.tsx("a", { target: "_blank", href: layer.url }, layer.title)),
+                widget_1.tsx("td", null, layerTitleNode),
                 widget_1.tsx("td", null, !!layer.visible),
                 widget_1.tsx("td", null, layer.type),
                 widget_1.tsx("td", null, text),
@@ -97,8 +107,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         };
         Attribution.prototype._renderItems = function () {
             var _this = this;
-            var items = this.viewModel.items;
-            return items.toArray().map(function (item) { return _this._renderItem(item); });
+            return this.viewModel.items.toArray().map(function (item) { return _this._renderItem(item); });
         };
         __decorate([
             decorators_1.aliasOf("viewModel.view")

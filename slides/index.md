@@ -164,7 +164,7 @@ _...then magic!_   <!-- .element: class="fragment" data-fragment-index="1" -->
 
 <!-- .slide: data-background="images/demo-background.png" -->
 
-<a target="_blank" href="http://localhost/jcfranco/uc-2017-customizing-widgets/demos/theming/"><img src="images/theming-screenshot.png" width="600" /></a>
+<a target="_blank" href="http://localhost/jcfranco/dev-summit-2018-customizing-widgets/demos/theming/"><img src="images/theming-screenshot.png" width="600" /></a>
 
 ---
 
@@ -241,10 +241,10 @@ Using...
 
 Create a custom LayerList view for a Bootstrap app
 
-- [Demo Steps](https://github.com/jcfranco/uc-2017-customizing-widgets/blob/master/demos/layerlist-steps.md)
+- [Demo Steps](https://github.com/jcfranco/dev-summit-2018-customizing-widgets/blob/master/demos/layerlist-steps.md)
 - [Demo](../demos/customlayerlist-start/)
 
-[![Level 2 demo](./images/level2demo.png)](https://jcfranco.github.io/uc-2017-customizing-widgets/demos/customlayerlist-complete/)
+[![Level 2 demo](./images/level2demo.png)](https://jcfranco.github.io/dev-summit-2018-customizing-widgets/demos/customlayerlist-complete/)
 
 <!-- .slide: data-background="images/demo-background.png" -->
 
@@ -347,8 +347,8 @@ render() {
 
 # Demo: Extending a View
 
-[Demo](https://jcfranco.github.io/uc-2017-customizing-widgets/demos/custombasemapgallery-end/)
-[Steps](https://github.com/jcfranco/uc-2017-customizing-widgets/blob/master/demos/custombasemapgallery-start/STEPS.md)
+[Demo](https://jcfranco.github.io/dev-summit-2018-customizing-widgets/demos/custombasemapgallery-end/)
+[Steps](https://github.com/jcfranco/dev-summit-2018-customizing-widgets/blob/master/demos/custombasemapgallery-start/STEPS.md)
 
 <img src="images/demo-extending-view.png" width="50%"/>
 

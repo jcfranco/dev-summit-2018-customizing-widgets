@@ -5,11 +5,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
 
-  <title>Custom Attribution Widget</title>
+  <title>AttributionTable Widget</title>
 
   <link rel="stylesheet" href="https://jsdev.arcgis.com/4.7/esri/css/main.css">
 
-  <link rel="stylesheet" href="app/css/CustomAttribution.css">
+  <link rel="stylesheet" href="app/css/AttributionTable.css">
 
   <script>
     var href = location.href;
@@ -46,37 +46,37 @@
   </style>
 
   <script>
-    var customAttribution;
+    var attribution;
 
     require([
       "esri/WebMap",
       "esri/views/MapView",
-      "demo/CustomAttribution",
+      "demo/AttributionTable",
       "dojo/domReady!"
     ], function (
       WebMap,
       MapView,
-      CustomAttribution
+      AttributionTable
     ) {
 
-      var webmap = new WebMap({
-        portalItem: {
-          id: "1c909e31eebd4d4cb7d314dc3923a690"
-        }
+        var webmap = new WebMap({
+          portalItem: {
+            id: "1c909e31eebd4d4cb7d314dc3923a690"
+          }
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: webmap
+        });
+
+        var attribution = new AttributionTable({
+          view: view
+        });
+
+        view.ui.add(attribution, "top-right");
+
       });
-
-      var view = new MapView({
-        container: "viewDiv",
-        map: webmap
-      });
-
-      var customAttribution = new CustomAttribution({
-        view: view
-      });
-
-      view.ui.add(customAttribution, "top-right");
-
-    });
 
   </script>
 </head>
@@ -86,4 +86,3 @@
 </body>
 
 </html>
-

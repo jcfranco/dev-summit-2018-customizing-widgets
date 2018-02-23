@@ -18,15 +18,20 @@ import SceneView = require("esri/views/SceneView");
 import { Extent } from "esri/geometry";
 
 const CSS = {
-  base: "esri-widget esri-custom-attribution",
+  base: "demo-attribution-table",
+  table: "demo-attribution-table__table",
+  tableHeaderRow: "demo-attribution-table__header-row",
+  tableHeaderCell: "demo-attribution-table__header-cell",
+  tableRow: "demo-attribution-table__row",
+  tableCell: "demo-attribution-table__cell"
 };
 
 // function getLayerView(layer: Layer, view: MapView | SceneView): LayerView {
 //   return (view as any).allLayerViews.find((lv: LayerView) => lv.layer === layer);
 // }
 
-@subclass("esri.widgets.Attribution")
-class Attribution extends declared(Widget) {
+@subclass("demo.AttributionTable")
+class AttributionTable extends declared(Widget) {
 
   //--------------------------------------------------------------------------
   //
@@ -71,8 +76,7 @@ class Attribution extends declared(Widget) {
     type: AttributionViewModel
   })
   @renderable([
-    "state",
-    "view.size"
+    "state"
   ])
   viewModel: AttributionViewModel = new AttributionViewModel();
 
@@ -84,22 +88,20 @@ class Attribution extends declared(Widget) {
 
   render() {
     const tableNode = this.view.ready ? (
-      <table>
-        <tr>
-          <th>Layer</th>
-          <th>Visible</th>
-          <th>Type</th>
-          <th>Source(s)</th>
-          <th>Extent</th>
+      <table class={CSS.table}>
+        <tr class={CSS.tableHeaderRow}>
+          <th class={CSS.tableHeaderCell}>Layer</th>
+          <th class={CSS.tableHeaderCell}>Visible</th>
+          <th class={CSS.tableHeaderCell}>Type</th>
+          <th class={CSS.tableHeaderCell}>Source(s)</th>
+          <th class={CSS.tableHeaderCell}>Extent</th>
         </tr>
         {this._renderItems()}
       </table>
     ) : null;
 
     return (
-      <div class={CSS.base}>
-        {tableNode}
-      </div>
+      <div class={CSS.base}>{tableNode}</div>
     );
   }
 
@@ -137,12 +139,12 @@ class Attribution extends declared(Widget) {
     // console.log(layerView);
 
     return (
-      <tr key={item}>
-        <td>{layerTitleNode}</td>
-        <td>{!!layer.visible}</td>
-        <td>{layer.type}</td>
-        <td>{text}</td>
-        <td><a
+      <tr class={CSS.tableRow} key={item}>
+        <td class={CSS.tableCell}>{layerTitleNode}</td>
+        <td class={CSS.tableCell}>{!!layer.visible}</td>
+        <td class={CSS.tableCell}>{layer.type}</td>
+        <td class={CSS.tableCell}>{text}</td>
+        <td class={CSS.tableCell}><a
           bind={this}
           data-extent={layer.fullExtent}
           onclick={this._zoomTo}
@@ -157,4 +159,4 @@ class Attribution extends declared(Widget) {
 
 }
 
-export = Attribution;
+export = AttributionTable;

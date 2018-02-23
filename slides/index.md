@@ -216,24 +216,24 @@ Widgets are composed of Views & ViewModels <!-- .element: class="fragment" data-
 
 # Level II: Working with Views
 
-API Exploration
+<!-- .element: class="fragment" data-fragment-index="1" --> API Exploration
 
-- [LayerList Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList.html)
-- [LayerList.tsx](https://github.com/Esri/arcgis-js-api/blob/4master/widgets/LayerList.tsx) (View)
-- [LayerList.scss](https://github.com/Esri/arcgis-js-api/blob/4master/themes/base/widgets/_LayerList.scss) (Theme)
-- [LayerList Sample](https://developers.arcgis.com/javascript/latest/sample-code/widgets-layerlist/index.html)
+- <!-- .element: class="fragment" data-fragment-index="1" --> [LayerList Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList.html)
+- <!-- .element: class="fragment" data-fragment-index="1" --> [LayerList.tsx](https://github.com/Esri/arcgis-js-api/blob/4master/widgets/LayerList.tsx) (View)
+- <!-- .element: class="fragment" data-fragment-index="1" --> [LayerList.scss](https://github.com/Esri/arcgis-js-api/blob/4master/themes/base/widgets/_LayerList.scss) (Theme)
+- <!-- .element: class="fragment" data-fragment-index="1" --> [LayerList Sample](https://developers.arcgis.com/javascript/latest/sample-code/widgets-layerlist/index.html)
 
 ---
 
 # Views: Let's customize!
 
-Lets create a custom widget view.
+<!-- .element: class="fragment" data-fragment-index="1" --> Lets create a custom widget view.
 
-Using...
+<!-- .element: class="fragment" data-fragment-index="2" --> Using...
 
-- [jQuery](https://jquery.com/)
-  - [Plugin creation](https://learn.jquery.com/plugins/basic-plugin-creation/)
-- [Bootstrap](http://getbootstrap.com/)
+- <!-- .element: class="fragment" data-fragment-index="2" --> [jQuery](https://jquery.com/)
+  - <!-- .element: class="fragment" data-fragment-index="2" --> [Plugin creation](https://learn.jquery.com/plugins/basic-plugin-creation/)
+- <!-- .element: class="fragment" data-fragment-index="2" --> [Bootstrap](http://getbootstrap.com/)
 
 ---
 

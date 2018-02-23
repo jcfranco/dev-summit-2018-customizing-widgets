@@ -392,13 +392,6 @@ render() {
 
 ---
 
-## Suggested Session
-
-- [Developing Your Own Widget with the ArcGIS API for JavaScript
-](https://userconference2017.schedule.esri.com/schedule/603662896)
-
----
-
 ## Additional Resources
 
 - [Implementing Accessor](https://developers.arcgis.com/javascript/latest/guide/implementing-accessor/index.html)
@@ -410,7 +403,7 @@ render() {
 
 # The source code!
 
-## [esriurl.com/customwidgetsuc2017](http://esriurl.com/customwidgetsuc2017)
+## [esriurl.com/customwidgetsds2018](http://esriurl.com/customwidgetsds2018)
 
 ---
 

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <title>Extending Widget View</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
+  <link rel="stylesheet" href="app/css/CustomBasemapGallery.css">
+
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
+    /* apply 8-bit font to all widgets */
+    .esri-widget {
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    html,
+    body,
+    #view {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+
+  <script type="text/javascript">
+    var href = location.href;
+    var demoLocation = href.slice(0, href.lastIndexOf("/"));
+    var dojoConfig = {
+      // configure loader to load demo modules (non-CDN) from the correct location.
+      packages: [{
+        name: "demo",
+        location: demoLocation + '/app'
+      }]
+    };
+  </script>
+
+  <script src="https://js.arcgis.com/4.4"></script>
+  <script>
+    var map, view, expand, widget;
+
+    require([
+      "esri/WebMap",
+      "esri/views/MapView",
+      "esri/widgets/Expand",
+      "demo/CustomBasemapGallery",
+      "dojo/domReady!"
+    ], function (
+      WebMap,
+      MapView,
+      Expand,
+      CustomBasemapGallery
+    ) {
+
+      //----------------
+      //  map setup
+      //----------------
+
+      map = new WebMap({
+        portalItem: {
+          id: "243cd45ee6ce4415ac119e44fcaca5bf"
+        }
+      });
+
+      view = new MapView({
+        container: "view",
+        map: map,
+        zoom: 15,
+        center: [-117.1628487109789, 32.706813240831096]
+      });
+
+      //----------------
+      //  widget setup
+      //----------------
+
+      widget = new CustomBasemapGallery({
+        view: view
+      });
+
+      // store customized widget in expand widget
+      expand = new Expand({
+        expandIconClass: "esri-icon-basemap",
+        content: widget
+      });
+
+      view.ui.add(expand, "top-right");
+    });
+  </script>
+</head>
+
+<body>
+  <div id="view"></div>
+</body>
+
+</html>

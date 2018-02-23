@@ -28,9 +28,9 @@
 
 # Customization Approaches
 
-- Authoring a theme
-- Recreating a view
-- Extending a view
+- Authoring a theme <!-- .element: class="fragment" data-fragment-index="1" -->
+- Recreating a view <!-- .element: class="fragment" data-fragment-index="2" -->
+- Extending a view  <!-- .element: class="fragment" data-fragment-index="3" -->
 
 ---
 
@@ -50,7 +50,7 @@
 ---
 
 # Level I: Theming
-## Why Theme?
+## Why Theme?                                  <!-- .element: class="fragment" data-fragment-index="0" -->
 - Match branding.                              <!-- .element: class="fragment" data-fragment-index="1" -->
 - Match the map.                         <!-- .element: class="fragment" data-fragment-index="2" -->
 - Contrast with the map.                 <!-- .element: class="fragment" data-fragment-index="3" -->
@@ -156,7 +156,7 @@ _...then magic!_   <!-- .element: class="fragment" data-fragment-index="1" -->
 
 <img src="./images/8bit/JSAPI-8bit_Magic.png" style="margin: 0;"/>  <!-- .element: class="fragment" data-fragment-index="1" -->
 
-<a href="https://developers.arcgis.com/javascript/latest/guide/styling/index.html#sassy-widgets" target="_blank">Theming Guide</a>
+<a href="https://developers.arcgis.com/javascript/latest/guide/styling/index.html#sassy-widgets" target="_blank">Theming Guide</a> <!-- .element: class="fragment" data-fragment-index="2" -->
 
 ---
 
@@ -170,12 +170,12 @@ _...then magic!_   <!-- .element: class="fragment" data-fragment-index="1" -->
 
 # Level I: Theming Recap
 
-* Use Sass for easy theming.
-* Theme structure
-  - Color
-  - Size
-  - Typography
-* Use the core and override values.
+* Use Sass for easy theming. <!-- .element: class="fragment" data-fragment-index="1" -->
+* Theme structure <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Color         <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Size          <!-- .element: class="fragment" data-fragment-index="2" -->
+  - Typography    <!-- .element: class="fragment" data-fragment-index="2" -->
+* Use the core and override values. <!-- .element: class="fragment" data-fragment-index="3" -->
 
 ---
 
@@ -198,7 +198,7 @@ _...then magic!_   <!-- .element: class="fragment" data-fragment-index="1" -->
 <!-- Presenter: Matt -->
 # Level II: Widget Composition
 
-Widgets are composed of Views & ViewModels
+Widgets are composed of Views & ViewModels <!-- .element: class="fragment" data-fragment-index="0" -->
 
   - Reusable                  <!-- .element: class="fragment" data-fragment-index="1" -->
   - UI replacement            <!-- .element: class="fragment" data-fragment-index="2" -->
@@ -252,7 +252,7 @@ Create a custom LayerList view for a Bootstrap app
 
 # Level II: Views Recap
 
-What have we learned about Widget Views?
+What have we learned about Widget Views? <!-- .element: class="fragment" data-fragment-index="0" -->
 
 - Views <!-- .element: class="fragment" data-fragment-index="1" -->
   - Face of the widget <!-- .element: class="fragment" data-fragment-index="2" -->

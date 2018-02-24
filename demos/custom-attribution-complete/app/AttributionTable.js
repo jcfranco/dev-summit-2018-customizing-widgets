@@ -16,10 +16,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/core/watchUtils", "esri/core/accessorSupport/decorators", "esri/widgets/Widget", "esri/widgets/support/widget", "esri/widgets/Attribution/AttributionViewModel"], function (require, exports, __extends, __decorate, watchUtils, decorators_1, Widget, widget_1, AttributionViewModel) {
+define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/core/tsSupport/decorateHelper", "esri/core/watchUtils", "esri/core/accessorSupport/decorators", "esri/widgets/Widget", "esri/widgets/support/widget", "esri/widgets/Attribution/AttributionViewModel", "dojo/i18n!./nls/AttributionTable"], function (require, exports, __extends, __decorate, watchUtils, decorators_1, Widget, widget_1, AttributionViewModel, i18n) {
     "use strict";
     var CSS = {
         base: "demo-attribution-table",
+        noAttribution: "demo-attribution-table__no-attribution",
+        iconClass: "esri-icon-description",
+        iconFullExtent: "esri-icon-zoom-out-fixed",
+        iconExternalLink: "esri-icon-link-external",
         table: "demo-attribution-table__table",
         tableHeaderRow: "demo-attribution-table__header-row",
         tableHeaderCell: "demo-attribution-table__header-cell",
@@ -29,9 +33,6 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         tableRow: "demo-attribution-table__row",
         tableCell: "demo-attribution-table__cell"
     };
-    // function getLayerView(layer: Layer, view: MapView | SceneView): LayerView {
-    //   return (view as any).allLayerViews.find((lv: LayerView) => lv.layer === layer);
-    // }
     var AttributionTable = /** @class */ (function (_super) {
         __extends(AttributionTable, _super);
         //--------------------------------------------------------------------------
@@ -43,14 +44,17 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             var _this = _super.call(this) || this;
             //--------------------------------------------------------------------------
             //
-            //  Variables
-            //
-            //--------------------------------------------------------------------------
-            //--------------------------------------------------------------------------
-            //
             //  Properties
             //
             //--------------------------------------------------------------------------
+            //----------------------------------
+            //  iconClass
+            //----------------------------------
+            _this.iconClass = CSS.iconClass;
+            //----------------------------------
+            //  label
+            //----------------------------------
+            _this.label = i18n.widgetLabel;
             //----------------------------------
             //  view
             //----------------------------------
@@ -71,21 +75,49 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //
         //--------------------------------------------------------------------------
         AttributionTable.prototype.render = function () {
-            var tableNode = this.view.ready ? (widget_1.tsx("table", { class: CSS.table },
-                widget_1.tsx("tr", { class: CSS.tableHeaderRow },
-                    widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell) }),
-                    widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellTitle) }, "Title"),
-                    widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellType) }, "Type"),
-                    widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellSources) }, "Source(s)")),
-                this._renderItems())) : null;
-            return (widget_1.tsx("div", { class: CSS.base }, tableNode));
+            var state = this.viewModel.state;
+            var attributionItems = this._renderAttributionItems();
+            var headerRowNode = (widget_1.tsx("tr", { class: CSS.tableHeaderRow },
+                widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellTitle) }, i18n.columnTitle),
+                widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellType) }, i18n.columnType),
+                widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellSources) }, i18n.columnSources)));
+            var tableNode = (widget_1.tsx("table", { class: CSS.table },
+                headerRowNode,
+                attributionItems));
+            var noItemsNode = (widget_1.tsx("div", { class: CSS.noAttribution }, i18n.noAttribution));
+            var rootNode = state === "ready" ?
+                attributionItems.length ?
+                    tableNode :
+                    noItemsNode :
+                null;
+            return (widget_1.tsx("div", { class: CSS.base }, rootNode));
         };
         //--------------------------------------------------------------------------
         //
         //  Private Methods
         //
         //--------------------------------------------------------------------------
-        AttributionTable.prototype._zoomTo = function (event) {
+        AttributionTable.prototype._renderAttributionItems = function () {
+            var _this = this;
+            return this.viewModel.items.toArray().map(function (item) { return _this._renderAttributionItem(item); });
+        };
+        AttributionTable.prototype._renderAttributionItem = function (item) {
+            var text = item.text, layer = item.layer;
+            var layerUrl = this._getLayerUrl(layer);
+            var fullExtent = layer.fullExtent, title = layer.title, type = layer.type;
+            var titleNode = fullExtent ? (widget_1.tsx("a", { href: "#", bind: this, title: i18n.fullExtent, "data-extent": fullExtent, onkeydown: this._fullExtent, onclick: this._fullExtent }, title)) : title;
+            var typeNode = layerUrl ? (widget_1.tsx("a", { href: layerUrl, title: i18n.externalLink, target: "_blank" }, type)) : type;
+            return (widget_1.tsx("tr", { class: CSS.tableRow, key: item },
+                widget_1.tsx("td", { class: CSS.tableCell }, titleNode),
+                widget_1.tsx("td", { class: CSS.tableCell }, typeNode),
+                widget_1.tsx("td", { class: CSS.tableCell }, text)));
+        };
+        AttributionTable.prototype._getLayerUrl = function (layer) {
+            return layer.url || null;
+        };
+        AttributionTable.prototype._fullExtent = function (event) {
+            event.preventDefault();
+            event.stopPropagation();
             var extent = event.currentTarget["data-extent"];
             var view = this.view;
             if (!extent || !view) {
@@ -93,30 +125,12 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             }
             view.goTo(extent);
         };
-        AttributionTable.prototype._getLayerUrl = function (layer) {
-            return layer.url || null;
-        };
-        AttributionTable.prototype._renderItem = function (item) {
-            var text = item.text, layer = item.layer;
-            var layerUrl = this._getLayerUrl(layer);
-            var layerTitleNode = layerUrl ?
-                (widget_1.tsx("a", { target: "_blank", href: layerUrl }, layer.title)) :
-                (widget_1.tsx("span", null, layer.title));
-            // const layerView = getLayerView(layer, this.view);
-            // console.log(layerView);
-            return (widget_1.tsx("tr", { class: CSS.tableRow, key: item },
-                widget_1.tsx("td", { class: CSS.tableCell },
-                    widget_1.tsx("span", { class: "esri-icon-visible" }),
-                    widget_1.tsx("span", { class: "esri-icon-zoom-out-fixed" }),
-                    widget_1.tsx("span", { class: "esri-icon-link-external" })),
-                widget_1.tsx("td", { class: CSS.tableCell }, layerTitleNode),
-                widget_1.tsx("td", { class: CSS.tableCell }, layer.type),
-                widget_1.tsx("td", { class: CSS.tableCell }, text)));
-        };
-        AttributionTable.prototype._renderItems = function () {
-            var _this = this;
-            return this.viewModel.items.toArray().map(function (item) { return _this._renderItem(item); });
-        };
+        __decorate([
+            decorators_1.property()
+        ], AttributionTable.prototype, "iconClass", void 0);
+        __decorate([
+            decorators_1.property()
+        ], AttributionTable.prototype, "label", void 0);
         __decorate([
             decorators_1.aliasOf("viewModel.view")
         ], AttributionTable.prototype, "view", void 0);
@@ -128,6 +142,9 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
                 "state"
             ])
         ], AttributionTable.prototype, "viewModel", void 0);
+        __decorate([
+            widget_1.accessibleHandler()
+        ], AttributionTable.prototype, "_fullExtent", null);
         AttributionTable = __decorate([
             decorators_1.subclass("demo.AttributionTable")
         ], AttributionTable);

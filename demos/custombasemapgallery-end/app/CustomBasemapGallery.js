@@ -30,7 +30,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         // new custom class
         thumbnailFrame: "esri-basemap-gallery__item-thumbnail-frame",
     };
-    var CustomBasemapGallery = (function (_super) {
+    var CustomBasemapGallery = /** @class */ (function (_super) {
         __extends(CustomBasemapGallery, _super);
         function CustomBasemapGallery() {
             return _super !== null && _super.apply(this, arguments) || this;

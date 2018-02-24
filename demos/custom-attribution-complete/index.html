@@ -52,11 +52,13 @@
       "esri/WebMap",
       "esri/views/MapView",
       "demo/AttributionTable",
+      "esri/widgets/Expand",
       "dojo/domReady!"
     ], function (
       WebMap,
       MapView,
-      AttributionTable
+      AttributionTable,
+      Expand
     ) {
 
         var webmap = new WebMap({
@@ -72,6 +74,11 @@
 
         var attribution = new AttributionTable({
           view: view
+        });
+
+        var expand = new Expand({
+          view: view,
+          content: attribution
         });
 
         view.ui.add(attribution, "top-right");

@@ -1,10 +1,12 @@
 define({
   root: ({
-    widgetLabel: "Layer List",
-    noItemsToDisplay: "There are currently no items to display.",
-    layerInvisibleAtScale: "Invisible at current scale",
-    layerError: "An error occurred loading this layer",
-    untitledLayer: "Untitled layer"
+    widgetLabel: "Attribution Table",
+    noAttribution: "No attribution to display",
+    fullExtent: "View layer's full extent",
+    externalLink: "View layer's service URL",
+    columnTitle: "Title",
+    columnType: "Type",
+    columnSources: "Source(s)"
   }),
   "ar": 1,
   "bs": 1,

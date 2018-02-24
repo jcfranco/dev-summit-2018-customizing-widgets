@@ -12,13 +12,16 @@ import AttributionViewModel = require("esri/widgets/Attribution/AttributionViewM
 import MapView = require("esri/views/MapView");
 import SceneView = require("esri/views/SceneView");
 
-// import Layer = require("esri/layers/Layer");
-// import LayerView = require("esri/views/layers/LayerView");
+import i18n = require("dojo/i18n!./nls/AttributionTable");
 
 import { Extent } from "esri/geometry";
 
 const CSS = {
   base: "demo-attribution-table",
+  noAttribution: "demo-attribution-table__no-attribution",
+  iconClass: "esri-icon-description",
+  iconFullExtent: "esri-icon-zoom-out-fixed",
+  iconExternalLink: "esri-icon-link-external",
   table: "demo-attribution-table__table",
   tableHeaderRow: "demo-attribution-table__header-row",
   tableHeaderCell: "demo-attribution-table__header-cell",
@@ -28,10 +31,6 @@ const CSS = {
   tableRow: "demo-attribution-table__row",
   tableCell: "demo-attribution-table__cell"
 };
-
-// function getLayerView(layer: Layer, view: MapView | SceneView): LayerView {
-//   return (view as any).allLayerViews.find((lv: LayerView) => lv.layer === layer);
-// }
 
 @subclass("demo.AttributionTable")
 class AttributionTable extends declared(Widget) {
@@ -54,15 +53,23 @@ class AttributionTable extends declared(Widget) {
 
   //--------------------------------------------------------------------------
   //
-  //  Variables
-  //
-  //--------------------------------------------------------------------------
-
-  //--------------------------------------------------------------------------
-  //
   //  Properties
   //
   //--------------------------------------------------------------------------
+
+  //----------------------------------
+  //  iconClass
+  //----------------------------------
+
+  @property()
+  iconClass = CSS.iconClass;
+
+  //----------------------------------
+  //  label
+  //----------------------------------
+
+  @property()
+  label = i18n.widgetLabel;
 
   //----------------------------------
   //  view
@@ -90,20 +97,37 @@ class AttributionTable extends declared(Widget) {
   //--------------------------------------------------------------------------
 
   render() {
-    const tableNode = this.view.ready ? (
+    const { state } = this.viewModel;
+
+    const attributionItems = this._renderAttributionItems();
+
+    const headerRowNode = (
+      <tr class={CSS.tableHeaderRow}>
+        <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellTitle)}>{i18n.columnTitle}</th>
+        <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellType)}>{i18n.columnType}</th>
+        <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellSources)}>{i18n.columnSources}</th>
+      </tr>
+    );
+
+    const tableNode = (
       <table class={CSS.table}>
-        <tr class={CSS.tableHeaderRow}>
-          <th class={join(CSS.tableHeaderCell)}></th>
-          <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellTitle)}>Title</th>
-          <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellType)}>Type</th>
-          <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellSources)}>Source(s)</th>
-        </tr>
-        {this._renderItems()}
+        {headerRowNode}
+        {attributionItems}
       </table>
-    ) : null;
+    );
+
+    const noItemsNode = (
+      <div class={CSS.noAttribution}>{i18n.noAttribution}</div>
+    );
+
+    const rootNode = state === "ready" ?
+      attributionItems.length ?
+        tableNode :
+        noItemsNode :
+      null;
 
     return (
-      <div class={CSS.base}>{tableNode}</div>
+      <div class={CSS.base}>{rootNode}</div>
     );
   }
 
@@ -113,7 +137,53 @@ class AttributionTable extends declared(Widget) {
   //
   //--------------------------------------------------------------------------
 
-  private _zoomTo(event: Event) {
+  private _renderAttributionItems(): any {
+    return this.viewModel.items.toArray().map(item => this._renderAttributionItem(item));
+  }
+
+  private _renderAttributionItem(item: __esri.AttributionItem) {
+    const { text, layer } = item;
+
+    const layerUrl = this._getLayerUrl(layer);
+
+    const { fullExtent, title, type } = layer;
+
+    const titleNode = fullExtent ? (
+      <a
+        href="#"
+        bind={this}
+        title={i18n.fullExtent}
+        data-extent={fullExtent}
+        onkeydown={this._fullExtent}
+        onclick={this._fullExtent}>
+        {title}
+      </a>
+    ) : title;
+
+    const typeNode = layerUrl ? (
+      <a href={layerUrl}
+        title={i18n.externalLink}
+        target="_blank">{type}</a>
+    ) : type;
+
+    return (
+      <tr class={CSS.tableRow} key={item}>
+        <td class={CSS.tableCell}>{titleNode}</td>
+        <td class={CSS.tableCell}>{typeNode}</td>
+        <td class={CSS.tableCell}>{text}</td>
+      </tr>
+    );
+  }
+
+  private _getLayerUrl(layer: any): string {
+    return layer.url || null;
+  }
+
+  @accessibleHandler()
+  private _fullExtent(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+
     const extent = event.currentTarget["data-extent"] as Extent;
     const { view } = this;
 
@@ -122,46 +192,6 @@ class AttributionTable extends declared(Widget) {
     }
 
     (view as MapView).goTo(extent);
-  }
-
-  private _getLayerUrl(layer: any): string {
-    return layer.url || null;
-  }
-
-  private _renderItem(item: __esri.AttributionItem) {
-    const { text, layer } = item;
-
-    const layerUrl = this._getLayerUrl(layer);
-
-    const layerTitleNode = layerUrl ?
-      (<a target="_blank" href={layerUrl}>{layer.title}</a>) :
-      (<span>{layer.title}</span>);
-
-    // const layerView = getLayerView(layer, this.view);
-    // console.log(layerView);
-
-    return (
-      <tr class={CSS.tableRow} key={item}>
-        <td class={CSS.tableCell}>
-          <span class="esri-icon-visible" />
-          <span class="esri-icon-zoom-out-fixed" />
-          <span class="esri-icon-link-external" />
-        </td>
-        <td class={CSS.tableCell}>{layerTitleNode}</td>
-        {/* <td class={CSS.tableCell}>{!!layer.visible}</td> */}
-        <td class={CSS.tableCell}>{layer.type}</td>
-        <td class={CSS.tableCell}>{text}</td>
-        {/* <td class={CSS.tableCell}><a
-          bind={this}
-          data-extent={layer.fullExtent}
-          onclick={this._zoomTo}
-        >Zoom to</a></td> */}
-      </tr>
-    );
-  }
-
-  private _renderItems(): any {
-    return this.viewModel.items.toArray().map(item => this._renderItem(item));
   }
 
 }

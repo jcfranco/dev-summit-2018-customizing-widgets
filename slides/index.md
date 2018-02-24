@@ -1,4 +1,4 @@
-<!-- .slide: data-background="images/start-background.png" -->
+<!-- .slide: data-background="img/bg-1.png" -->
 <!-- Presenter: Matt -->
 
 # ArcGIS API for JavaScript: Customizing Widgets
@@ -162,7 +162,7 @@ _...then magic!_   <!-- .element: class="fragment" data-fragment-index="1" -->
 
 # Demo: Theming
 
-<!-- .slide: data-background="images/demo-background.png" -->
+<!-- .slide: data-background="img/bg-2.png" -->
 
 <a target="_blank" href="http://localhost/jcfranco/dev-summit-2018-customizing-widgets/demos/theming/"><img src="images/theming-screenshot.png" width="600" /></a>
 
@@ -246,7 +246,7 @@ Create a custom LayerList view for a Bootstrap app
 
 [![Level 2 demo](./images/level2demo.png)](https://jcfranco.github.io/dev-summit-2018-customizing-widgets/demos/customlayerlist-complete/)
 
-<!-- .slide: data-background="images/demo-background.png" -->
+<!-- .slide: data-background="img/bg-2.png" -->
 
 ---
 
@@ -352,7 +352,7 @@ render() {
 
 <img src="images/demo-extending-view.png" width="50%"/>
 
-<!-- .slide: data-background="images/demo-background.png" -->
+<!-- .slide: data-background="img/bg-2.png" -->
 
 ---
 
@@ -407,7 +407,7 @@ render() {
 
 ---
 
-<!-- .slide: data-background="images/survey-background.png" -->
+
 
 ---
 
@@ -417,8 +417,10 @@ render() {
 
 ---
 
+<!-- .slide: data-background="img/bg-final.jpg" -->
+
 ![Thank You](./images/thanks.gif)
 
 ---
 
-<!-- .slide: data-background="images/end-background.png" -->
+<!-- .slide: data-background="img/bg-final.jpg" -->

@@ -23,6 +23,9 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         table: "demo-attribution-table__table",
         tableHeaderRow: "demo-attribution-table__header-row",
         tableHeaderCell: "demo-attribution-table__header-cell",
+        tableHeaderCellTitle: "demo-attribution-table__header-cell--title",
+        tableHeaderCellType: "demo-attribution-table__header-cell--type",
+        tableHeaderCellSources: "demo-attribution-table__header-cell--sources",
         tableRow: "demo-attribution-table__row",
         tableCell: "demo-attribution-table__cell"
     };
@@ -70,11 +73,10 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         AttributionTable.prototype.render = function () {
             var tableNode = this.view.ready ? (widget_1.tsx("table", { class: CSS.table },
                 widget_1.tsx("tr", { class: CSS.tableHeaderRow },
-                    widget_1.tsx("th", { class: CSS.tableHeaderCell }, "Layer"),
-                    widget_1.tsx("th", { class: CSS.tableHeaderCell }, "Visible"),
-                    widget_1.tsx("th", { class: CSS.tableHeaderCell }, "Type"),
-                    widget_1.tsx("th", { class: CSS.tableHeaderCell }, "Source(s)"),
-                    widget_1.tsx("th", { class: CSS.tableHeaderCell }, "Extent")),
+                    widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell) }),
+                    widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellTitle) }, "Title"),
+                    widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellType) }, "Type"),
+                    widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellSources) }, "Source(s)")),
                 this._renderItems())) : null;
             return (widget_1.tsx("div", { class: CSS.base }, tableNode));
         };
@@ -103,12 +105,13 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             // const layerView = getLayerView(layer, this.view);
             // console.log(layerView);
             return (widget_1.tsx("tr", { class: CSS.tableRow, key: item },
-                widget_1.tsx("td", { class: CSS.tableCell }, layerTitleNode),
-                widget_1.tsx("td", { class: CSS.tableCell }, !!layer.visible),
-                widget_1.tsx("td", { class: CSS.tableCell }, layer.type),
-                widget_1.tsx("td", { class: CSS.tableCell }, text),
                 widget_1.tsx("td", { class: CSS.tableCell },
-                    widget_1.tsx("a", { bind: this, "data-extent": layer.fullExtent, onclick: this._zoomTo }, "Zoom to"))));
+                    widget_1.tsx("span", { class: "esri-icon-visible" }),
+                    widget_1.tsx("span", { class: "esri-icon-zoom-out-fixed" }),
+                    widget_1.tsx("span", { class: "esri-icon-link-external" })),
+                widget_1.tsx("td", { class: CSS.tableCell }, layerTitleNode),
+                widget_1.tsx("td", { class: CSS.tableCell }, layer.type),
+                widget_1.tsx("td", { class: CSS.tableCell }, text)));
         };
         AttributionTable.prototype._renderItems = function () {
             var _this = this;

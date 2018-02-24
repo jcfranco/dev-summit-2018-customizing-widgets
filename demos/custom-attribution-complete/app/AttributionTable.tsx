@@ -5,7 +5,7 @@ import watchUtils = require("esri/core/watchUtils");
 import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
 
 import Widget = require("esri/widgets/Widget");
-import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
+import { accessibleHandler, join, renderable, tsx } from "esri/widgets/support/widget";
 
 import AttributionViewModel = require("esri/widgets/Attribution/AttributionViewModel");
 
@@ -22,6 +22,9 @@ const CSS = {
   table: "demo-attribution-table__table",
   tableHeaderRow: "demo-attribution-table__header-row",
   tableHeaderCell: "demo-attribution-table__header-cell",
+  tableHeaderCellTitle: "demo-attribution-table__header-cell--title",
+  tableHeaderCellType: "demo-attribution-table__header-cell--type",
+  tableHeaderCellSources: "demo-attribution-table__header-cell--sources",
   tableRow: "demo-attribution-table__row",
   tableCell: "demo-attribution-table__cell"
 };
@@ -90,11 +93,10 @@ class AttributionTable extends declared(Widget) {
     const tableNode = this.view.ready ? (
       <table class={CSS.table}>
         <tr class={CSS.tableHeaderRow}>
-          <th class={CSS.tableHeaderCell}>Layer</th>
-          <th class={CSS.tableHeaderCell}>Visible</th>
-          <th class={CSS.tableHeaderCell}>Type</th>
-          <th class={CSS.tableHeaderCell}>Source(s)</th>
-          <th class={CSS.tableHeaderCell}>Extent</th>
+          <th class={join(CSS.tableHeaderCell)}></th>
+          <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellTitle)}>Title</th>
+          <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellType)}>Type</th>
+          <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellSources)}>Source(s)</th>
         </tr>
         {this._renderItems()}
       </table>
@@ -140,15 +142,20 @@ class AttributionTable extends declared(Widget) {
 
     return (
       <tr class={CSS.tableRow} key={item}>
+        <td class={CSS.tableCell}>
+          <span class="esri-icon-visible" />
+          <span class="esri-icon-zoom-out-fixed" />
+          <span class="esri-icon-link-external" />
+        </td>
         <td class={CSS.tableCell}>{layerTitleNode}</td>
-        <td class={CSS.tableCell}>{!!layer.visible}</td>
+        {/* <td class={CSS.tableCell}>{!!layer.visible}</td> */}
         <td class={CSS.tableCell}>{layer.type}</td>
         <td class={CSS.tableCell}>{text}</td>
-        <td class={CSS.tableCell}><a
+        {/* <td class={CSS.tableCell}><a
           bind={this}
           data-extent={layer.fullExtent}
           onclick={this._zoomTo}
-        >Zoom to</a></td>
+        >Zoom to</a></td> */}
       </tr>
     );
   }

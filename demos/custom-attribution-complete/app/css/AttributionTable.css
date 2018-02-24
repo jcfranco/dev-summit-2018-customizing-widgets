@@ -1,9 +1,37 @@
 .demo-attribution-table__table {
   width: auto;
+  max-width: 600px;
+  font-size: 14px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.4);
 }
+
+.demo-attribution-table__header-row {
+  background-color: #000;
+  color: #fff;
+}
+
+.demo-attribution-table__header-cell {
+  margin: 0;
+  padding: 10px;
+}
+
 
 .demo-attribution-table__header-cell,
 .demo-attribution-table__cell {
-  width: auto;
+  margin: 0;
+  padding: 2px 5px;
+}
+
+.demo-attribution-table__header-cell--title {
+  width: 20%;
+}
+
+.demo-attribution-table__header-cell--type {
+  width: 10%;
+}
+
+.demo-attribution-table__header-cell--sources {
+  width: 70%;
 }
 

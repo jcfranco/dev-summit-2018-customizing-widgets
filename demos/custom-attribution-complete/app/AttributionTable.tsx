@@ -97,10 +97,6 @@ class AttributionTable extends declared(Widget) {
   //--------------------------------------------------------------------------
 
   render() {
-    const { state } = this.viewModel;
-
-    const attributionItems = this._renderAttributionItems();
-
     const headerRowNode = (
       <tr class={CSS.tableHeaderRow}>
         <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellTitle)}>{i18n.columnTitle}</th>
@@ -108,6 +104,8 @@ class AttributionTable extends declared(Widget) {
         <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellSources)}>{i18n.columnSources}</th>
       </tr>
     );
+
+    const attributionItems = this._renderAttributionItems();
 
     const tableNode = (
       <table class={CSS.table}>
@@ -119,6 +117,8 @@ class AttributionTable extends declared(Widget) {
     const noItemsNode = (
       <div class={CSS.noAttribution}>{i18n.noAttribution}</div>
     );
+
+    const { state } = this.viewModel;
 
     const rootNode = state === "ready" ?
       attributionItems.length ?
@@ -144,8 +144,6 @@ class AttributionTable extends declared(Widget) {
   private _renderAttributionItem(item: __esri.AttributionItem) {
     const { text, layer } = item;
 
-    const layerUrl = this._getLayerUrl(layer);
-
     const { fullExtent, title, type } = layer;
 
     const titleNode = fullExtent ? (
@@ -159,6 +157,8 @@ class AttributionTable extends declared(Widget) {
         {title}
       </a>
     ) : title;
+
+    const layerUrl = this._getLayerUrl(layer);
 
     const typeNode = layerUrl ? (
       <a href={layerUrl}

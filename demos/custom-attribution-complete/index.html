@@ -9,15 +9,15 @@
 
   <link rel="stylesheet" href="https://jsdev.arcgis.com/4.7/esri/css/main.css">
 
-  <link rel="stylesheet" href="app/css/AttributionTable.css">
-
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+  <link rel="stylesheet" href="app/css/AttributionTable.css">
 
   <script>
     var href = location.href;
     var demoLocation = href.slice(0, href.lastIndexOf("/"));
     var dojoConfig = {
-      async: true,
+      //locale: "es",
       packages: [{
         name: "demo",
         location: demoLocation + "/app"
@@ -30,26 +30,18 @@
 
   <style>
     html,
-    body {
-      height: 100%;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
+    body,
     #viewDiv {
-      padding: 0;
-      margin: 0;
       height: 100%;
       width: 100%;
+      margin: 0;
+      padding: 0;
       overflow: hidden;
     }
 
   </style>
 
   <script>
-    var attribution;
-
     require([
       "esri/WebMap",
       "esri/views/MapView",
@@ -61,27 +53,27 @@
       AttributionTable
     ) {
 
-      var webmap = new WebMap({
-        portalItem: {
-          id: "1c909e31eebd4d4cb7d314dc3923a690"
-        }
+        var map = new WebMap({
+          portalItem: {
+            id: "1c909e31eebd4d4cb7d314dc3923a690"
+          }
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          ui: {
+            components: ["zoom"]
+          },
+          map: map
+        });
+
+        var attribution = new AttributionTable({
+          view: view
+        });
+
+        view.ui.add(attribution, "bottom-left");
+
       });
-
-      var view = new MapView({
-        container: "viewDiv",
-        ui: {
-          components: ["zoom"]
-        },
-        map: webmap
-      });
-
-      var attribution = new AttributionTable({
-        view: view
-      });
-
-      view.ui.add(attribution, "bottom-left");
-
-    });
 
   </script>
 </head>
@@ -91,4 +83,3 @@
 </body>
 
 </html>
-

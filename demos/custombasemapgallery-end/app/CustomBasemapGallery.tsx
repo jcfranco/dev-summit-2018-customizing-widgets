@@ -41,10 +41,10 @@ class CustomBasemapGallery extends declared(BasemapGallery) {
   }
 
   private _renderBasemapGalleryItem(item: BasemapGalleryItem): any {
-    const thumbnailUrl = item.get<string>("basemap.thumbnailUrl");
+    const thumbnailUrl = item.basemap.thumbnailUrl;
     const thumbnailSource = thumbnailUrl || DEFAULT_BASEMAP_IMAGE;
-    const title = item.get<string>("basemap.title");
-    const tooltip = item.get<string>("error.message") || title;
+    const title = item.basemap.title;
+    const tooltip = item.error && item.error || title;
     const tabIndex = item.state === "ready" ? 0 : -1;
     const isSelected = this.viewModel.basemapEquals(item.basemap, this.activeBasemap);
 

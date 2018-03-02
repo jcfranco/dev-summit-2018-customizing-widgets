@@ -47,10 +47,10 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             }
         };
         CustomBasemapGallery.prototype._renderBasemapGalleryItem = function (item) {
-            var thumbnailUrl = item.get("basemap.thumbnailUrl");
+            var thumbnailUrl = item.basemap.thumbnailUrl;
             var thumbnailSource = thumbnailUrl || DEFAULT_BASEMAP_IMAGE;
-            var title = item.get("basemap.title");
-            var tooltip = item.get("error.message") || title;
+            var title = item.basemap.title;
+            var tooltip = item.error && item.error || title;
             var tabIndex = item.state === "ready" ? 0 : -1;
             var isSelected = this.viewModel.basemapEquals(item.basemap, this.activeBasemap);
             var itemClasses = (_a = {},

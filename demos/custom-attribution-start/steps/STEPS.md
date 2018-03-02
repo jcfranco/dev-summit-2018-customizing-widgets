@@ -8,4 +8,5 @@ Please refer to the following for more information:
 - [Widget Development](https://developers.arcgis.com/javascript/latest/guide/custom-widget/index.html)
 ____________
 
-TODO
+- 1. [HTML Steps](HTML.md)
+- 2. [View Steps](VIEW.md)

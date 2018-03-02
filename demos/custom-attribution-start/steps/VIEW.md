@@ -239,79 +239,79 @@ render() {
 
 ### 8. Add private methods
 
-  ```ts
-  //--------------------------------------------------------------------------
-  //
-  //  Private Methods
-  //
-  //--------------------------------------------------------------------------
+```ts
+//--------------------------------------------------------------------------
+//
+//  Private Methods
+//
+//--------------------------------------------------------------------------
 
-  private _renderAttributionItems(): any {
-    return this.viewModel.items.toArray().map(item => this._renderAttributionItem(item));
+private _renderAttributionItems(): any {
+  return this.viewModel.items.toArray().map(item => this._renderAttributionItem(item));
+}
+
+private _renderAttributionItem(item: __esri.AttributionItem) {
+  const { text, layer } = item;
+
+  const { fullExtent, title, type } = layer;
+
+  const titleNode = fullExtent ? (
+    <a
+      href="#"
+      bind={this}
+      title={i18n.fullExtent}
+      data-extent={fullExtent}
+      onkeydown={this._fullExtent}
+      onclick={this._fullExtent}>
+      {title}
+    </a>
+  ) : title;
+
+  const layerUrl = this._getLayerUrl(layer);
+
+  const typeNode = layerUrl ? (
+    <a href={layerUrl}
+      title={i18n.externalLink}
+      target="_blank">{type}</a>
+  ) : type;
+
+  return (
+    <tr class={CSS.tableRow} key={item}>
+      <td class={CSS.tableCell}>{titleNode}</td>
+      <td class={CSS.tableCell}>{typeNode}</td>
+      <td class={CSS.tableCell}>{text}</td>
+    </tr>
+  );
+}
+
+private _getLayerUrl(layer: any): string {
+  return layer.url || null;
+}
+
+@accessibleHandler()
+private _fullExtent(event: Event) {
+  event.preventDefault();
+  event.stopPropagation();
+
+  const extent = event.currentTarget["data-extent"] as Extent;
+  const { view } = this;
+
+  if (!extent || !view) {
+    return;
   }
 
-  private _renderAttributionItem(item: __esri.AttributionItem) {
-    const { text, layer } = item;
-
-    const { fullExtent, title, type } = layer;
-
-    const titleNode = fullExtent ? (
-      <a
-        href="#"
-        bind={this}
-        title={i18n.fullExtent}
-        data-extent={fullExtent}
-        onkeydown={this._fullExtent}
-        onclick={this._fullExtent}>
-        {title}
-      </a>
-    ) : title;
-
-    const layerUrl = this._getLayerUrl(layer);
-
-    const typeNode = layerUrl ? (
-      <a href={layerUrl}
-        title={i18n.externalLink}
-        target="_blank">{type}</a>
-    ) : type;
-
-    return (
-      <tr class={CSS.tableRow} key={item}>
-        <td class={CSS.tableCell}>{titleNode}</td>
-        <td class={CSS.tableCell}>{typeNode}</td>
-        <td class={CSS.tableCell}>{text}</td>
-      </tr>
-    );
-  }
-
-  private _getLayerUrl(layer: any): string {
-    return layer.url || null;
-  }
-
-  @accessibleHandler()
-  private _fullExtent(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const extent = event.currentTarget["data-extent"] as Extent;
-    const { view } = this;
-
-    if (!extent || !view) {
-      return;
-    }
-
-    (view as MapView).goTo(extent);
-  }
+  (view as MapView).goTo(extent);
+}
 ```
 
 Add @accessibleHandler
 
-```
+```ts
 import { accessibleHandler, join, renderable, tsx } from "esri/widgets/support/widget";
 ```
 
 Add Extent
 
-```
+```ts
 import { Extent } from "esri/geometry";
 ```

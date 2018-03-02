@@ -235,7 +235,7 @@ Widgets are composed of Views & ViewModels <!-- .element: class="fragment" data-
 
 Create a custom Attribution Table view
 
-- [Demo Steps](todo)
+- [Demo Steps](../demos/custom-attribution-start/STEPS.md)
 - [Demo](../demos/custom-attribution-start/)
 
 [![Level 2 demo](./images/level2demo.png)](https://jcfranco.github.io/dev-summit-2018-customizing-widgets/demos/customlayerlist-complete/)

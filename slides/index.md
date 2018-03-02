@@ -411,6 +411,11 @@ render() {
 
 ---
 
+<!-- **please rate us** -->
+<!-- .slide: data-background="img/ds18-survey.png" -->
+
+---
+
 <!-- .slide: data-background="img/bg-final.jpg" -->
 
 ![Thank You](./images/thanks.gif)

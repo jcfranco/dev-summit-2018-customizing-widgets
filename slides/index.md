@@ -218,10 +218,10 @@ Widgets are composed of Views & ViewModels <!-- .element: class="fragment" data-
 
 <!-- .element: class="fragment" data-fragment-index="1" --> API Exploration
 
-- <!-- .element: class="fragment" data-fragment-index="1" --> [LayerList Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-LayerList.html)
-- <!-- .element: class="fragment" data-fragment-index="1" --> [LayerList.tsx](https://github.com/Esri/arcgis-js-api/blob/4master/widgets/LayerList.tsx) (View)
-- <!-- .element: class="fragment" data-fragment-index="1" --> [LayerList.scss](https://github.com/Esri/arcgis-js-api/blob/4master/themes/base/widgets/_LayerList.scss) (Theme)
-- <!-- .element: class="fragment" data-fragment-index="1" --> [LayerList Sample](https://developers.arcgis.com/javascript/latest/sample-code/widgets-layerlist/index.html)
+- <!-- .element: class="fragment" data-fragment-index="1" --> [Attribution Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Attribution.html)
+- <!-- .element: class="fragment" data-fragment-index="1" --> [Attribution.tsx](https://github.com/Esri/arcgis-js-api/blob/4master/widgets/Attribution.tsx) (View)
+- <!-- .element: class="fragment" data-fragment-index="1" --> [Attribution.scss](https://github.com/Esri/arcgis-js-api/blob/4master/themes/base/widgets/_Attribution.scss) (Theme)
+- <!-- .element: class="fragment" data-fragment-index="1" --> [Attribution Sample](https://developers.arcgis.com/javascript/latest/sample-code/widgets-layerlist/index.html)
 
 ---
 
@@ -229,20 +229,14 @@ Widgets are composed of Views & ViewModels <!-- .element: class="fragment" data-
 
 <!-- .element: class="fragment" data-fragment-index="1" --> Lets create a custom widget view.
 
-<!-- .element: class="fragment" data-fragment-index="2" --> Using...
-
-- <!-- .element: class="fragment" data-fragment-index="2" --> [jQuery](https://jquery.com/)
-  - <!-- .element: class="fragment" data-fragment-index="2" --> [Plugin creation](https://learn.jquery.com/plugins/basic-plugin-creation/)
-- <!-- .element: class="fragment" data-fragment-index="2" --> [Bootstrap](http://getbootstrap.com/)
-
 ---
 
 # Demo
 
-Create a custom LayerList view for a Bootstrap app
+Create a custom Attribution Table view
 
-- [Demo Steps](https://github.com/jcfranco/dev-summit-2018-customizing-widgets/blob/master/demos/layerlist-steps.md)
-- [Demo](../demos/customlayerlist-start/)
+- [Demo Steps](todo)
+- [Demo](../demos/custom-attribution-start/)
 
 [![Level 2 demo](./images/level2demo.png)](https://jcfranco.github.io/dev-summit-2018-customizing-widgets/demos/customlayerlist-complete/)
 

@@ -1,8 +1,8 @@
 .demo-attribution-table {
   font-family: 'Press Start 2P', cursive;
   box-sizing: border-box;
-  font-size: 14px;
-  width: 850px;
+  font-size: 13px;
+  line-height: 1.3em;
 }
 
 .demo-attribution-table a {
@@ -16,12 +16,12 @@
 }
 
 .demo-attribution-table__table {
-  width: 850px;
   background-color: #5d94fb;
   color: #dbfcff;
-  border: 4px solid #000;
+  border: 3px solid #000;
   border-collapse: collapse;
   box-sizing: border-box;
+  width: 850px;
 }
 
 .demo-attribution-table__header-row {
@@ -33,7 +33,7 @@
 .demo-attribution-table__cell {
   margin: 0;
   vertical-align: top;
-  border: 4px solid #000;
+  border: 3px solid #000;
   box-sizing: border-box;
 }
 

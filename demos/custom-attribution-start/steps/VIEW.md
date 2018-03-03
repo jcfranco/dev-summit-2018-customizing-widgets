@@ -304,13 +304,13 @@ private _fullExtent(event: Event) {
 }
 ```
 
-Add @accessibleHandler
+### 9. Add @accessibleHandler
 
 ```ts
 import { accessibleHandler, join, renderable, tsx } from "esri/widgets/support/widget";
 ```
 
-Add Extent
+### 10. Add Extent
 
 ```ts
 import { Extent } from "esri/geometry";

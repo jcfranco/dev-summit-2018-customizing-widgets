@@ -75,16 +75,16 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //
         //--------------------------------------------------------------------------
         AttributionTable.prototype.render = function () {
-            var state = this.viewModel.state;
-            var attributionItems = this._renderAttributionItems();
             var headerRowNode = (widget_1.tsx("tr", { class: CSS.tableHeaderRow },
                 widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellTitle) }, i18n.columnTitle),
                 widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellType) }, i18n.columnType),
                 widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellSources) }, i18n.columnSources)));
+            var attributionItems = this._renderAttributionItems();
             var tableNode = (widget_1.tsx("table", { class: CSS.table },
                 headerRowNode,
                 attributionItems));
             var noItemsNode = (widget_1.tsx("div", { class: CSS.noAttribution }, i18n.noAttribution));
+            var state = this.viewModel.state;
             var rootNode = state === "ready" ?
                 attributionItems.length ?
                     tableNode :
@@ -103,9 +103,9 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         };
         AttributionTable.prototype._renderAttributionItem = function (item) {
             var text = item.text, layer = item.layer;
-            var layerUrl = this._getLayerUrl(layer);
             var fullExtent = layer.fullExtent, title = layer.title, type = layer.type;
             var titleNode = fullExtent ? (widget_1.tsx("a", { href: "#", bind: this, title: i18n.fullExtent, "data-extent": fullExtent, onkeydown: this._fullExtent, onclick: this._fullExtent }, title)) : title;
+            var layerUrl = this._getLayerUrl(layer);
             var typeNode = layerUrl ? (widget_1.tsx("a", { href: layerUrl, title: i18n.externalLink, target: "_blank" }, type)) : type;
             return (widget_1.tsx("tr", { class: CSS.tableRow, key: item },
                 widget_1.tsx("td", { class: CSS.tableCell }, titleNode),

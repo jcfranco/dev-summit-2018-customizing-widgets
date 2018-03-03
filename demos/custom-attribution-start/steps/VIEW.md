@@ -315,3 +315,7 @@ Add Extent
 ```ts
 import { Extent } from "esri/geometry";
 ```
+
+## Next...
+
+After the View has been setup, head to the [CSS Steps](CSS.md)

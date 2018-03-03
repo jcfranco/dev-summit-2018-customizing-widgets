@@ -76,9 +76,9 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
         //--------------------------------------------------------------------------
         AttributionTable.prototype.render = function () {
             var headerRowNode = (widget_1.tsx("tr", { class: CSS.tableHeaderRow },
-                widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellTitle) }, i18n.columnTitle),
-                widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellType) }, i18n.columnType),
-                widget_1.tsx("th", { class: widget_1.join(CSS.tableHeaderCell, CSS.tableHeaderCellSources) }, i18n.columnSources)));
+                widget_1.tsx("th", { class: this.classes(CSS.tableHeaderCell, CSS.tableHeaderCellTitle) }, i18n.columnTitle),
+                widget_1.tsx("th", { class: this.classes(CSS.tableHeaderCell, CSS.tableHeaderCellType) }, i18n.columnType),
+                widget_1.tsx("th", { class: this.classes(CSS.tableHeaderCell, CSS.tableHeaderCellSources) }, i18n.columnSources)));
             var attributionItems = this._renderAttributionItems();
             var tableNode = (widget_1.tsx("table", { class: CSS.table },
                 headerRowNode,

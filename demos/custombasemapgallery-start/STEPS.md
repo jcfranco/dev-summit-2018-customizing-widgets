@@ -60,7 +60,8 @@ ____________
       null;
 
     return (
-      <li aria-selected={isSelected} bind={this} class={CSS.item} classes={itemClasses}
+      <li aria-selected={isSelected} bind={this} 
+          class={this.classes(CSS.item, itemClasses)}
           data-item={item} onkeydown={this._handleClick} onclick={this._handleClick}
           role="menuitem" tabIndex={tabIndex} title={tooltip}>
         {loadingIndicator}

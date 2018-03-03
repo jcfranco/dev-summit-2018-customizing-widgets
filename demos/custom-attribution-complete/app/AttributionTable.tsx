@@ -5,7 +5,7 @@ import watchUtils = require("esri/core/watchUtils");
 import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
 
 import Widget = require("esri/widgets/Widget");
-import { accessibleHandler, join, renderable, tsx } from "esri/widgets/support/widget";
+import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
 
 import AttributionViewModel = require("esri/widgets/Attribution/AttributionViewModel");
 
@@ -99,9 +99,9 @@ class AttributionTable extends declared(Widget) {
   render() {
     const headerRowNode = (
       <tr class={CSS.tableHeaderRow}>
-        <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellTitle)}>{i18n.columnTitle}</th>
-        <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellType)}>{i18n.columnType}</th>
-        <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellSources)}>{i18n.columnSources}</th>
+        <th class={this.classes(CSS.tableHeaderCell, CSS.tableHeaderCellTitle)}>{i18n.columnTitle}</th>
+        <th class={this.classes(CSS.tableHeaderCell, CSS.tableHeaderCellType)}>{i18n.columnType}</th>
+        <th class={this.classes(CSS.tableHeaderCell, CSS.tableHeaderCellSources)}>{i18n.columnSources}</th>
       </tr>
     );
 

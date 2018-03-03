@@ -204,9 +204,9 @@ import watchUtils = require("esri/core/watchUtils");
 render() {
   const headerRowNode = (
     <tr class={CSS.tableHeaderRow}>
-      <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellTitle)}>{i18n.columnTitle}</th>
-      <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellType)}>{i18n.columnType}</th>
-      <th class={join(CSS.tableHeaderCell, CSS.tableHeaderCellSources)}>{i18n.columnSources}</th>
+      <th class={this.classes(CSS.tableHeaderCell, CSS.tableHeaderCellTitle)}>{i18n.columnTitle}</th>
+      <th class={this.classes(CSS.tableHeaderCell, CSS.tableHeaderCellType)}>{i18n.columnType}</th>
+      <th class={this.classes(CSS.tableHeaderCell, CSS.tableHeaderCellSources)}>{i18n.columnSources}</th>
     </tr>
   );
 
@@ -307,7 +307,7 @@ private _fullExtent(event: Event) {
 ### 9. Add @accessibleHandler
 
 ```ts
-import { accessibleHandler, join, renderable, tsx } from "esri/widgets/support/widget";
+import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
 ```
 
 ### 10. Add Extent

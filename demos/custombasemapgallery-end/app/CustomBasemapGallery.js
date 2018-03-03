@@ -61,7 +61,7 @@ define(["require", "exports", "esri/core/tsSupport/declareExtendsHelper", "esri/
             var loadingIndicator = item.state === "loading" ?
                 widget_1.tsx("div", { class: CSS.loadingIndicator, key: "esri-basemap-gallery_loading-indicator" }) :
                 null;
-            return (widget_1.tsx("li", { "aria-selected": isSelected, bind: this, class: CSS.item, classes: itemClasses, "data-item": item, onkeydown: this._handleClick, onclick: this._handleClick, role: "menuitem", tabIndex: tabIndex, title: tooltip },
+            return (widget_1.tsx("li", { "aria-selected": isSelected, bind: this, class: this.classes(CSS.item, itemClasses), "data-item": item, onkeydown: this._handleClick, onclick: this._handleClick, role: "menuitem", tabIndex: tabIndex, title: tooltip },
                 loadingIndicator,
                 widget_1.tsx("div", { class: CSS.thumbnailFrame },
                     widget_1.tsx("img", { alt: "", class: CSS.itemThumbnail, src: thumbnailSource })),

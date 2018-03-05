@@ -380,19 +380,13 @@ What have we learned about Widget Views? <!-- .element: class="fragment" data-fr
 
 ---
 
-# The source code!
-
-## [esriurl.com/customwidgetsds2018](http://esriurl.com/customwidgetsds2018)
-
----
-
-
-
----
-
 # Questions?
 
-![questions](./images/questions.gif)
+##### For example
+
+> &#x1f914; Where can I find the slides/source?
+
+&#x1F449; [esriurl.com/customwidgetsds2018](http://esriurl.com/customwidgetsds2018) &#x1F448;
 
 ---
 

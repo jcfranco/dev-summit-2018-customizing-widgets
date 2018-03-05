@@ -60,6 +60,18 @@ view.ui.add(attribution, "bottom-left");
 <link rel="stylesheet" href="app/css/AttributionTable.css">
 ```
 
+### 6. Turn off default attribution on view
+
+```js
+var view = new MapView({
+  container: "viewDiv",
+  ui: {
+    components: ["zoom"]
+  },
+  map: map
+});
+```
+
 ## Next...
 
 After the HTML has been setup, head to the [View Steps](VIEW.md)

@@ -9,13 +9,6 @@
   <link rel="stylesheet" href="app/css/CustomBasemapGallery.css">
 
   <style>
-    @import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
-
-    /* apply 8-bit font to all widgets */
-    .esri-widget {
-      font-family: 'Press Start 2P', cursive;
-    }
-
     html,
     body,
     #view {
@@ -81,8 +74,12 @@
 
       // store customized widget in expand widget
       expand = new Expand({
-        expandIconClass: "esri-icon-basemap",
+
+        // in 4.7, Expand knows which icon to use for BasemapGallery
+        // expandIconClass: "esri-icon-basemap",
+
         content: widget
+
       });
 
       view.ui.add(expand, "top-right");

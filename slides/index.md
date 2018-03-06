@@ -290,6 +290,8 @@ What have we learned about Widget Views? <!-- .element: class="fragment" data-fr
 
 ![Level 2](./images/8bit/JSAPI-8bit_Level-2.png)
 
+<h2 class="eight-bit">Ready?</h2>
+
 ---
 
 <!-- LEVEL UP B -->
@@ -380,6 +382,8 @@ What have we learned about Widget Views? <!-- .element: class="fragment" data-fr
 
 ![Level 3](./images/8bit/JSAPI-8bit_Level-3.png)
 
+<h2 class="eight-bit">Ready?</h2>
+
 ---
 
 <!-- LEVEL UP B -->
@@ -387,7 +391,7 @@ What have we learned about Widget Views? <!-- .element: class="fragment" data-fr
 
 ![Level 4](./images/8bit/JSAPI-8bit_Level-4-ani.gif)
 
-<p class="eight-bit">Put it all together.</p>
+<h2 class="eight-bit">Put it all together.</h2>
 
 ---
 

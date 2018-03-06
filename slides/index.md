@@ -61,7 +61,7 @@
 
 ![Sass](./images/sass-white.png)
 
-#### A powerful scripting language for producing CSS.
+#### A powerful scripting language for compiling CSS.
 
 
 ---
@@ -83,32 +83,43 @@
 
 ---
 
+<h3 style="font-family:monospace;text-transform:uppercase;">Previously on Theming</h3>
+<span style="font-family:monospace;text-transform:uppercase;">Life was hard.</span> <!-- .element: class="fragment" data-fragment-index="1" -->
+
+---
+
+Before, you needed to
+1. Pull down the API.
+1. Create a theme directory in the right place.
+1. Run the compiler.
+1. Wonder if there were a better way. <!-- .element: class="fragment" data-fragment-index="1" -->
+
+---
+
+# There is a better way!
+
+1. Get Franco's theme utility. <!-- .element: class="fragment" data-fragment-index="1" -->
+  - [github.com/jcfranco/jsapi-styles](https://github.com/jcfranco/jsapi-styles)
+1. Use the utility. <!-- .element: class="fragment" data-fragment-index="2" -->
+1. Smile. <!-- .element: class="fragment" data-fragment-index="3" -->
+
+
+---
+
 # Let's Create a Theme!
 
-1. Create your theme directory. <!-- .element: class="fragment" data-fragment-index="1" -->
-  -   `esri/themes/[your-theme-name]/`
-1. Create a Sass file in your theme directory. <!-- .element: class="fragment" data-fragment-index="2" -->
-  - `main.scss`
-  - `@import "../base/core";`
-1. Run the compiler. <!-- .element: class="fragment" data-fragment-index="3" -->
+1. Clone Franco's utility
+    - `git clone https://github.com/jcfranco/jsapi-styles.git`
+1. Run `npm install`
+    - Installs the necessary bits.
+    - Creates a sample theme directory.
+    - Compiles the CSS from the SCSS.
+    - Spins up a preview in your default browser.
 
 ---
 
 # Theme Structure
-Avoid writing a bunch of CSS selectors.
-
-<div>Include the theme "core" and override the default values.</div><!-- .element: class="fragment" data-fragment-index="1" -->
-
----
-
-# Theme Structure
-
-The theme core brings in three main **variable** files:
-- `base/_colorVariables.scss`
-- `base/_sizes.scss`
-- `base/_type.scss`
-
-These set the **default** values.
+Before going into the individual .scss files, let's look at the theme's structure.
 
 ---
 
@@ -146,6 +157,12 @@ _...then magic!_   <!-- .element: class="fragment" data-fragment-index="1" -->
 
 <img src="./images/8bit/JSAPI-8bit_Magic.png" style="margin: 0;"/>
 
+---
+
+# Magic
+
+<img src="./images/8bit/JSAPI-8bit_Magic.png" style="margin: 0;"/>
+
 ```
   $button_text_hover_color: offset-foreground-color($button_text_color, 25%) !default;
   $anchor_hover_color: offset-foreground-color($anchor_color, 25%) !default;
@@ -154,19 +171,6 @@ _...then magic!_   <!-- .element: class="fragment" data-fragment-index="1" -->
 ```
 <a href="https://developers.arcgis.com/javascript/latest/guide/styling/index.html#sassy-widgets" target="_blank">Theming Guide</a>
 
----
-
-# Wait...isn't there an easier way? 
-# Yes. <!-- .element: class="fragment" data-fragment-index="1" -->
-
----
-
-# Magic
-
-<img src="./images/8bit/JSAPI-8bit_Magic.png" style="margin: 0;"/>
-
-
-<a href="https://developers.arcgis.com/javascript/latest/guide/styling/index.html#sassy-widgets" target="_blank">Theming Guide</a>
 ---
 
 # Let's Create a Theme!

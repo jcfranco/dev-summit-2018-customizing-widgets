@@ -76,12 +76,26 @@ body {
 .reveal h1 {
   text-shadow: none; }
 
+.reveal .eight-bit {
+  font-family: 'Press Start 2P', cursive;
+}
+.reveal h1.eight-bit {
+  font-size: 1.6em;
+}
+.reveal h2.eight-bit {
+  font-size: 1.3em;
+}
+
 /*********************************************
  * OTHER
  *********************************************/
 .reveal p {
   margin: 20px 0;
   line-height: 1.3; }
+  
+.reveal p.eight-bit {
+  font-size: 1em;
+}
 
 /* Ensure certain elements are never larger than the slide itself */
 .reveal img,

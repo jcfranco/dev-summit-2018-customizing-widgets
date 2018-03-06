@@ -81,26 +81,16 @@
 <img src="images/nodejs-new-pantone-black.png" height="80" style="margin-left:10px; margin-right: 10px;"/>
 <img src="images/grunt.svg" height="80" style="margin-left:10px; margin-right: 10px;"/>
 
-<img src="images/ruby.png" height="40" style="margin-left:10px; margin-right: 10px;"/><!-- .element: class="fragment" data-fragment-index="4" -->
-
 ---
 
 # Let's Create a Theme!
 
-1. Create your theme directory. <!-- .element: class="fragment" data-fragment-index="5" -->
+1. Create your theme directory. <!-- .element: class="fragment" data-fragment-index="1" -->
   -   `esri/themes/[your-theme-name]/`
-1. Create a Sass file in your theme directory. <!-- .element: class="fragment" data-fragment-index="6" -->
+1. Create a Sass file in your theme directory. <!-- .element: class="fragment" data-fragment-index="2" -->
   - `main.scss`
   - `@import "../base/core";`
-1. Compile. <!-- .element: class="fragment" data-fragment-index="7" -->
-1. Include the compiled CSS in your app. <!-- .element: class="fragment" data-fragment-index="8" -->
-
-<div>
-```
-  <!-- in your app -->
-  <link rel="stylesheet" href="esri/themes/[your-theme-name]/main.css">
-```
-</div> <!-- .element: class="fragment" data-fragment-index="8" -->
+1. Run the compiler. <!-- .element: class="fragment" data-fragment-index="3" -->
 
 ---
 
@@ -154,9 +144,45 @@ $button_text_color     : #ffbaaa; // luigi
 
 _...then magic!_   <!-- .element: class="fragment" data-fragment-index="1" -->
 
-<img src="./images/8bit/JSAPI-8bit_Magic.png" style="margin: 0;"/>  <!-- .element: class="fragment" data-fragment-index="1" -->
+<img src="./images/8bit/JSAPI-8bit_Magic.png" style="margin: 0;"/>
 
-<a href="https://developers.arcgis.com/javascript/latest/guide/styling/index.html#sassy-widgets" target="_blank">Theming Guide</a> <!-- .element: class="fragment" data-fragment-index="2" -->
+```
+  $button_text_hover_color: offset-foreground-color($button_text_color, 25%) !default;
+  $anchor_hover_color: offset-foreground-color($anchor_color, 25%) !default;
+  $background_hover_color: offset-background-color($background_color, 5%) !default;
+// etc.
+```
+<a href="https://developers.arcgis.com/javascript/latest/guide/styling/index.html#sassy-widgets" target="_blank">Theming Guide</a>
+
+---
+
+# Wait...isn't there an easier way? 
+# Yes. <!-- .element: class="fragment" data-fragment-index="1" -->
+
+---
+
+# Magic
+
+<img src="./images/8bit/JSAPI-8bit_Magic.png" style="margin: 0;"/>
+
+
+<a href="https://developers.arcgis.com/javascript/latest/guide/styling/index.html#sassy-widgets" target="_blank">Theming Guide</a>
+---
+
+# Let's Create a Theme!
+The easy way.
+
+1. Get Franco's theme utility. <!-- .element: class="fragment" data-fragment-index="1" -->
+  - [github.com/jcfranco/jsapi-styles](https://github.com/jcfranco/jsapi-styles)
+1. Use the utility. <!-- .element: class="fragment" data-fragment-index="2" -->
+1. Smile. <!-- .element: class="fragment" data-fragment-index="3" -->
+
+---
+
+# Franco's Utility
+
+1. Download it.
+1. run `npm install`
 
 ---
 
@@ -183,6 +209,8 @@ _...then magic!_   <!-- .element: class="fragment" data-fragment-index="1" -->
 <h1 class="eight-bit">LEVEL UP!</h1>
 
 ![Level 1](./images/8bit/JSAPI-8bit_Level-1.png)
+
+<h2 class="eight-bit">Ready?</h2>
 
 ---
 

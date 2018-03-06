@@ -15,6 +15,22 @@ ____________
 2. Open `CustomBasemapGallery.tsx`
     - widget extension boilerplate
 
+```tsx
+/// <amd-dependency path="esri/core/tsSupport/declareExtendsHelper" name="__extends" />
+/// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
+
+import { subclass, declared } from "esri/core/accessorSupport/decorators";
+
+import BasemapGallery = require("esri/widgets/BasemapGallery");
+
+@subclass("demo.CustomBasemapGallery")
+class CustomBasemapGallery extends declared(BasemapGallery) {
+
+}
+
+export = CustomBasemapGallery;
+```
+
 3. Go to [BasemapGallery SDK](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-BasemapGallery.html) and navigate to view file (TSX).
     - all widget views are available on GitHub
     - inside look at how we develop widgets
@@ -199,4 +215,27 @@ ____________
   }
   ```
 
-9. Done!
+9. Finally, let's tie the whole theme together by applying an 8-bit font to all widgets.
+
+
+#### `index.html`
+```
+<style>
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
+/* apply 8-bit font to all widgets */
+.esri-widget {
+  font-family: 'Press Start 2P', cursive;
+}
+ 
+html,
+body,
+#view {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+</style>
+```
+
+10. Done!

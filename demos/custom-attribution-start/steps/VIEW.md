@@ -316,6 +316,10 @@ import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget"
 import { Extent } from "esri/geometry";
 ```
 
+### Test Translation
+
+Update dojo config to test translation.
+
 ## Next...
 
 After the View has been setup, head to the [CSS Steps](CSS.md)

@@ -308,8 +308,8 @@ What have we learned about Widget Views? <!-- .element: class="fragment" data-fr
   - Reusable                    <!-- .element: class="fragment" data-fragment-index="2" -->
   - Same ecosystem              <!-- .element: class="fragment" data-fragment-index="3" -->
 - How?                          <!-- .element: class="fragment" data-fragment-index="4" -->
-  - JS API v4.4                 <!-- .element: class="fragment" data-fragment-index="5" -->
-  - esri/widgets/Widget         <!-- .element: class="fragment" data-fragment-index="5" -->
+  - JS API v4.7                 <!-- .element: class="fragment" data-fragment-index="5" -->
+  - <!-- .element: class="fragment" data-fragment-index="5" --> `esri/widgets/Widget`
   - TypeScript                  <!-- .element: class="fragment" data-fragment-index="5" -->
 
 ---
@@ -323,10 +323,10 @@ What have we learned about Widget Views? <!-- .element: class="fragment" data-fr
 
 # Lifecycle
 
-- constructor         <!-- .element: class="fragment" data-fragment-index="1" -->
-- postInitialize      <!-- .element: class="fragment" data-fragment-index="2" -->
-- render              <!-- .element: class="fragment" data-fragment-index="3" -->
-- destroy             <!-- .element: class="fragment" data-fragment-index="8" -->
+- <!-- .element: class="fragment" data-fragment-index="1" --> `constructor`
+- <!-- .element: class="fragment" data-fragment-index="2" --> `postInitialize`
+- <!-- .element: class="fragment" data-fragment-index="3" --> `render`
+- <!-- .element: class="fragment" data-fragment-index="4" --> `destroy`
 
 ---
 
@@ -335,23 +335,7 @@ What have we learned about Widget Views? <!-- .element: class="fragment" data-fr
 - Defines UI                <!-- .element: class="fragment" data-fragment-index="1" -->
 - Reacts to state           <!-- .element: class="fragment" data-fragment-index="2" -->
 - Uses JSX                  <!-- .element: class="fragment" data-fragment-index="3" -->
-
-```js
-render() {
-  const x = Number(x).toFixed(3);
-  const y = Number(y).toFixed(3);
-  const scale = Number(scale).toFixed(5);
-
-  return (
-    <div bind={this} class={CSS.base} onclick={this._handleClick}>
-      <p>x: {x}</p>
-      <p>y: {y}</p>
-      <p>scale: {scale}</p>
-    </div>
-  );
-}
-```
-<!-- .element: class="fragment current-visible" data-fragment-index="4" -->
+- VDOM                      <!-- .element: class="fragment" data-fragment-index="4" -->
 
 ---
 
@@ -370,6 +354,7 @@ render() {
 # Demo: Extending a View
 
 [Demo](https://jcfranco.github.io/dev-summit-2018-customizing-widgets/demos/custombasemapgallery-end/)
+|
 [Steps](https://github.com/jcfranco/dev-summit-2018-customizing-widgets/blob/master/demos/custombasemapgallery-start/STEPS.md)
 
 <img src="images/demo-extending-view.png" width="50%"/>
@@ -423,19 +408,13 @@ render() {
 
 ---
 
-# The source code!
-
-## [esriurl.com/customwidgetsds2018](http://esriurl.com/customwidgetsds2018)
-
----
-
-
-
----
-
 # Questions?
 
-![questions](./images/questions.gif)
+##### For example
+
+> &#x1f914; Where can I find the slides/source?
+
+&#x1F449; [esriurl.com/customwidgetsds2018](http://esriurl.com/customwidgetsds2018) &#x1F448;
 
 ---
 

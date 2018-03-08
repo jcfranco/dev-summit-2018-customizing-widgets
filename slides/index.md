@@ -34,7 +34,7 @@
 
 ---
 
-![continue](./images/continue.gif)
+![continue](./images/8bit/8-BIT-continue-1366.png)
 
 ---
 

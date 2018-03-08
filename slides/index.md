@@ -187,7 +187,7 @@ Any value assignment overrides the `!default` value.
 $background_color : #cc4b09;
 ```
 
-But wait...there's more!
+But wait...there's more!<!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 

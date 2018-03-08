@@ -103,26 +103,30 @@ Before, you needed to
 1. Get our theme utility. <!-- .element: class="fragment" data-fragment-index="1" -->
 1. Use the utility. <!-- .element: class="fragment" data-fragment-index="2" -->
 1. Customize your theme. <!-- .element: class="fragment" data-fragment-index="3" -->
+1. Host your CSS file. <!-- .element: class="fragment" data-fragment-index="4" -->
 
+<span style="visibility:hidden;">hidden</span>
 
 ---
 
 # There is an easier way!
 
-1. Fork the utility `jsapi-styles.git`
+1. Clone the utility `jsapi-styles.git`
 1. Run `npm install`
-1. Edit `sass/my-theme/main.scss`.
+1. Edit <span style="font-weight:bold;">`sass/my-theme/main.scss`</span>.
+1. See <span style="font-weight:bold;">`dist/my-theme/main.css`</span>.
+
+<span>You won't need the base stylesheet.</span><!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 
 # Step 1
-Fork the repo.<br/>
+Clone the repo.<br/>
 <a href="https://github.com/jcfranco/jsapi-styles" target="_blank">https://github.com/jcfranco/jsapi-styles</a>
 
 <div>
-Clone your fork.
 ```
-git clone https://github.com/[your-username]/interactive-design.git
+git clone https://github.com/jcfranco/interactive-design.git
 ```
 </div><!-- .element: class="fragment" data-fragment-index="1" -->
 
@@ -148,6 +152,19 @@ Edit your theme.<br/>
 Optionally, edit your app.<br/>
 `preview/index.html`
 </div><!-- .element: class="fragment" data-fragment-index="1" -->
+
+---
+
+# Step 4
+
+Host your stylesheet and any relevant assets.
+
+Link your stylesheet in your app.
+
+```
+<!-- In your app: -->
+<link href="path/to/your/theme/main.css" rel="stylesheet">
+```
 
 ---
 

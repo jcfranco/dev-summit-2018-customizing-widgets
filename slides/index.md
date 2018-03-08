@@ -279,9 +279,26 @@ Widgets are composed of Views & ViewModels <!-- .element: class="fragment" data-
 <!-- .element: class="fragment" data-fragment-index="1" --> API Exploration
 
 - <!-- .element: class="fragment" data-fragment-index="1" --> [Attribution Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Attribution.html)
-- <!-- .element: class="fragment" data-fragment-index="1" --> [Attribution.tsx](https://github.com/Esri/arcgis-js-api/blob/4master/widgets/Attribution.tsx) (View)
-- <!-- .element: class="fragment" data-fragment-index="1" --> [Attribution.scss](https://github.com/Esri/arcgis-js-api/blob/4master/themes/base/widgets/_Attribution.scss) (Theme)
 - <!-- .element: class="fragment" data-fragment-index="1" --> [Attribution Sample](https://developers.arcgis.com/javascript/latest/sample-code/widgets-layerlist/index.html)
+
+---
+
+# Level II: `AttributionViewModel`
+
+```ts
+// AttributionViewModel in 4.7 Release
+
+interface AttributionViewModel {
+  items: Collection<AttributionItem>;
+  state: "ready" | "disabled";
+  view: MapView | SceneView;
+}
+
+interface AttributionItem {
+  layer: Layer;
+  text: string;
+}
+```
 
 ---
 
@@ -295,8 +312,9 @@ Widgets are composed of Views & ViewModels <!-- .element: class="fragment" data-
 
 Create a custom Attribution Table view
 
-- [Demo Steps](https://github.com/jcfranco/dev-summit-2018-customizing-widgets/tree/master/demos/custom-attribution-start/steps)
-- [Demo](../demos/custom-attribution-start/)
+- [Demo Steps](https://github.com/jcfranco/dev-summit-2018-customizing-widgets/tree/master/demos/custom-attribution-start/steps/STEPS.md)
+- [Demo Complete](../demos/custom-attribution-complete/)
+- [Demo Start](../demos/custom-attribution-start/)
 
 [![Level 2 demo](./images/level2demo.png)](https://jcfranco.github.io/dev-summit-2018-customizing-widgets/demos/custom-attribution-complete/)
 
@@ -310,8 +328,8 @@ What have we learned about Widget Views? <!-- .element: class="fragment" data-fr
 
 - Views <!-- .element: class="fragment" data-fragment-index="1" -->
   - Face of the widget <!-- .element: class="fragment" data-fragment-index="2" -->
-  - Renders the viewModel brains <!-- .element: class="fragment" data-fragment-index="3" -->
-  - View separation allows framework integration <!-- .element: class="fragment" data-fragment-index="4" -->
+  - Presents the ViewModel logic <!-- .element: class="fragment" data-fragment-index="3" -->
+  - View separation allows framework integration or custom views <!-- .element: class="fragment" data-fragment-index="4" -->
   - Views can be downloaded on API docs <!-- .element: class="fragment" data-fragment-index="5" -->
   - Can create views in other frameworks using ViewModels <!-- .element: class="fragment" data-fragment-index="6" -->
 
@@ -444,6 +462,11 @@ What have we learned about Widget Views? <!-- .element: class="fragment" data-fr
 
 ---
 
+<!-- **please rate us** -->
+<!-- .slide: data-background="img/ds18-survey.png" -->
+
+---
+
 # Questions?
 
 ##### For example
@@ -451,11 +474,6 @@ What have we learned about Widget Views? <!-- .element: class="fragment" data-fr
 > &#x1f914; Where can I find the slides/source?
 
 &#x1F449; [esriurl.com/customwidgetsds2018](http://esriurl.com/customwidgetsds2018) &#x1F448;
-
----
-
-<!-- **please rate us** -->
-<!-- .slide: data-background="img/ds18-survey.png" -->
 
 ---
 

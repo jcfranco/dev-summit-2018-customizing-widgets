@@ -237,6 +237,10 @@ render() {
   }
 ```
 
+### ** Progress report **
+
+Now let's compile the widget and look at it.
+
 ### 8. Add private methods
 
 ```ts
@@ -316,7 +320,9 @@ import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget"
 import { Extent } from "esri/geometry";
 ```
 
-### Test Translation
+### ** Progress report **
+
+Recompile and then test.
 
 Update dojo config to test translation.
 

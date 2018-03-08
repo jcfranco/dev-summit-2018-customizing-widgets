@@ -63,6 +63,10 @@
 }
 ```
 
+### ** Progress report **
+
+Update dojo config to test translation.
+
 ## Finished!
 
 Everything should be lookign good now :)

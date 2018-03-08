@@ -324,8 +324,6 @@ import { Extent } from "esri/geometry";
 
 Recompile and then test.
 
-Update dojo config to test translation.
-
 ## Next...
 
 After the View has been setup, head to the [CSS Steps](CSS.md)

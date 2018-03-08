@@ -34,8 +34,6 @@
 
 ---
 
-# Ready?
-
 ![continue](./images/continue.gif)
 
 ---
@@ -276,10 +274,10 @@ Widgets are composed of Views & ViewModels <!-- .element: class="fragment" data-
 
 # Level II: Working with Views
 
-<!-- .element: class="fragment" data-fragment-index="1" --> API Exploration
+ API Exploration
 
-- <!-- .element: class="fragment" data-fragment-index="1" --> [Attribution Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Attribution.html)
-- <!-- .element: class="fragment" data-fragment-index="1" --> [Attribution Sample](https://developers.arcgis.com/javascript/latest/sample-code/widgets-layerlist/index.html)
+- [Attribution Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Attribution.html)
+- [Attribution Sample](https://developers.arcgis.com/javascript/latest/sample-code/widgets-layerlist/index.html)
 
 ---
 
@@ -304,7 +302,7 @@ interface AttributionItem {
 
 # Views: Let's customize!
 
-<!-- .element: class="fragment" data-fragment-index="1" --> Lets create a custom widget view.
+Lets create a custom widget view.
 
 ---
 
@@ -326,12 +324,10 @@ Create a custom Attribution Table view
 
 What have we learned about Widget Views? <!-- .element: class="fragment" data-fragment-index="0" -->
 
-- Views <!-- .element: class="fragment" data-fragment-index="1" -->
-  - Face of the widget <!-- .element: class="fragment" data-fragment-index="2" -->
-  - Presents the ViewModel logic <!-- .element: class="fragment" data-fragment-index="3" -->
-  - View separation allows framework integration or custom views <!-- .element: class="fragment" data-fragment-index="4" -->
-  - Views can be downloaded on API docs <!-- .element: class="fragment" data-fragment-index="5" -->
-  - Can create views in other frameworks using ViewModels <!-- .element: class="fragment" data-fragment-index="6" -->
+- Face of the widget <!-- .element: class="fragment" data-fragment-index="2" -->
+- Present ViewModel logic <!-- .element: class="fragment" data-fragment-index="3" -->
+- ViewModel separation allows framework integration or custom views <!-- .element: class="fragment" data-fragment-index="4" -->
+- Downloadable on API docs <!-- .element: class="fragment" data-fragment-index="5" -->
 
 ---
 
@@ -481,6 +477,3 @@ What have we learned about Widget Views? <!-- .element: class="fragment" data-fr
 
 ![Thank You](./images/thanks.gif)
 
----
-
-<!-- .slide: data-background="img/bg-final.jpg" -->

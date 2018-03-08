@@ -59,27 +59,29 @@
 
 ---
 
+# Theming Technology
+
+---
+
+We use
+
 ![Sass](./images/sass-white.png)
 
-#### A powerful scripting language for compiling CSS.
+### to create our CSS.
+<img src="images/nodejs-new-pantone-black.png" height="80" style="margin-left:10px; margin-right: 10px;"/><!-- .element: class="fragment" data-fragment-index="1" -->
+<img src="images/grunt.svg" height="80" style="margin-left:10px; margin-right: 10px;"/><!-- .element: class="fragment" data-fragment-index="1" -->
 
+<small><a href="https://nodejs.org/">nodejs.org</a> | <a href="https://gruntjs.com/">gruntjs.com</a></small><!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 
 ![Sass](./images/sass-white.png)
 
-### Why Sass?
+### is a powerful scripting language for compiling CSS.
+
 - It's modular.                       <!-- .element: class="fragment" data-fragment-index="1" -->
 - It's DRY.                           <!-- .element: class="fragment" data-fragment-index="2" -->
 - It makes theming easy.              <!-- .element: class="fragment" data-fragment-index="3" -->
-
----
-
-![Sass](./images/sass-white.png)
-
-### Compiling
-<img src="images/nodejs-new-pantone-black.png" height="80" style="margin-left:10px; margin-right: 10px;"/>
-<img src="images/grunt.svg" height="80" style="margin-left:10px; margin-right: 10px;"/>
 
 ---
 
@@ -89,37 +91,84 @@
 ---
 
 Before, you needed to
-1. Pull down the API.
+1. Pull down the API <a href="https://github.com/Esri/arcgis-js-api/tree/4master">(arcgis-js-api)</a>.
 1. Create a theme directory in the right place.
+1. Create a Sass file.
+1. Import the core file.
 1. Run the compiler.
-1. Wonder if there were a better way. <!-- .element: class="fragment" data-fragment-index="1" -->
+1. Wonder if there were an easier way. <!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 
-# There is a better way!
+# There is an easier way!
 
-1. Get Franco's theme utility. <!-- .element: class="fragment" data-fragment-index="1" -->
-  - [github.com/jcfranco/jsapi-styles](https://github.com/jcfranco/jsapi-styles)
+1. Get our theme utility. <!-- .element: class="fragment" data-fragment-index="1" -->
 1. Use the utility. <!-- .element: class="fragment" data-fragment-index="2" -->
-1. Smile. <!-- .element: class="fragment" data-fragment-index="3" -->
+1. Customize your theme. <!-- .element: class="fragment" data-fragment-index="3" -->
 
 
 ---
 
-# Let's Create a Theme!
+# There is an easier way!
 
-1. Clone Franco's utility
-    - `git clone https://github.com/jcfranco/jsapi-styles.git`
+1. Fork the utility `jsapi-styles.git`
 1. Run `npm install`
-    - Installs the necessary bits.
-    - Creates a sample theme directory.
-    - Compiles the CSS from the SCSS.
-    - Spins up a preview in your default browser.
+1. Edit `sass/my-theme/main.scss`.
+
+---
+
+# Step 1
+Fork the repo.<br/>
+<a href="https://github.com/jcfranco/jsapi-styles" target="_blank">https://github.com/jcfranco/jsapi-styles</a>
+
+<div>
+Clone your fork.
+```
+git clone https://github.com/[your-username]/interactive-design.git
+```
+</div><!-- .element: class="fragment" data-fragment-index="1" -->
+
+---
+
+# Step 2
+`npm install`
+
+<div>
+  - Installs the necessary bits.
+  - Creates a sample theme directory.
+  - Compiles the CSS from the SCSS.
+  - Spins up a preview in your default browser.
+</div><!-- .element: class="fragment" data-fragment-index="1" -->
+
+---
+
+# Step 3
+Edit your theme.<br/>
+`sass/my-theme/main.scss`
+
+<div>
+Optionally, edit your app.<br/>
+`preview/index.html`
+</div><!-- .element: class="fragment" data-fragment-index="1" -->
+
+---
+
+# Let's have a look!
+
+---
+
+# Theme Smart
+Avoid adding additional CSS selectors.<br/>
+Instead, use Sass to your advantage.<br/>
+<span>Let's look at how the core theme is structured.</span><!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 
 # Theme Structure
-Before going into the individual .scss files, let's look at the theme's structure.
+
+- Color <span>: `colorVariables.scss`</span><!-- .element: class="fragment" data-fragment-index="1" -->
+- Size <span>: `sizes.scss`</span><!-- .element: class="fragment" data-fragment-index="1" -->
+- Type <span>: `type.scss`</span><!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 
@@ -134,7 +183,7 @@ $background_color : #fff !default ;
 Any value assignment overrides the `!default` value.
 
 ```
-// Inside esri/themes/[your-theme-name]/main.scss
+// Inside sass/my-theme/main.scss
 $background_color : #cc4b09;
 ```
 
@@ -153,9 +202,9 @@ $anchor_color          : #ffbaaa; // luigi
 $button_text_color     : #ffbaaa; // luigi
 ```
 
-_...then magic!_   <!-- .element: class="fragment" data-fragment-index="1" -->
+<span>...then magic!</span><!-- .element: class="fragment" data-fragment-index="1" -->
 
-<img src="./images/8bit/JSAPI-8bit_Magic.png" style="margin: 0;"/>
+<img src="./images/8bit/JSAPI-8bit_Magic.png" style="margin: 0;"/><!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 
@@ -173,34 +222,13 @@ _...then magic!_   <!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 
-# Let's Create a Theme!
-The easy way.
-
-1. Get Franco's theme utility. <!-- .element: class="fragment" data-fragment-index="1" -->
-  - [github.com/jcfranco/jsapi-styles](https://github.com/jcfranco/jsapi-styles)
-1. Use the utility. <!-- .element: class="fragment" data-fragment-index="2" -->
-1. Smile. <!-- .element: class="fragment" data-fragment-index="3" -->
-
----
-
-# Franco's Utility
-
-1. Download it.
-1. run `npm install`
-
----
-
-# Demo: Theming
-
-<!-- .slide: data-background="img/bg-2.png" -->
-
-<a target="_blank" href="http://localhost/jcfranco/dev-summit-2018-customizing-widgets/demos/theming/"><img src="images/theming-screenshot.png" width="600" /></a>
+# So let's make a theme!
 
 ---
 
 # Level I: Theming Recap
 
-* Use Sass for easy theming. <!-- .element: class="fragment" data-fragment-index="1" -->
+* Use the utility for easy theming. <!-- .element: class="fragment" data-fragment-index="1" -->
 * Theme structure <!-- .element: class="fragment" data-fragment-index="2" -->
   - Color         <!-- .element: class="fragment" data-fragment-index="2" -->
   - Size          <!-- .element: class="fragment" data-fragment-index="2" -->

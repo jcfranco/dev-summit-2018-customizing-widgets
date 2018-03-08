@@ -434,6 +434,11 @@ What have we learned about Widget Views? <!-- .element: class="fragment" data-fr
 
 ---
 
+<!-- **please rate us** -->
+<!-- .slide: data-background="img/ds18-survey.png" -->
+
+---
+
 # Questions?
 
 ##### For example
@@ -441,11 +446,6 @@ What have we learned about Widget Views? <!-- .element: class="fragment" data-fr
 > &#x1f914; Where can I find the slides/source?
 
 &#x1F449; [esriurl.com/customwidgetsds2018](http://esriurl.com/customwidgetsds2018) &#x1F448;
-
----
-
-<!-- **please rate us** -->
-<!-- .slide: data-background="img/ds18-survey.png" -->
 
 ---
 
